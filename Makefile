@@ -2,7 +2,7 @@ define MSG
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile for Libft                                 :+:      :+:    :+:    #
+#    Makefile for fillit                                :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
@@ -40,9 +40,10 @@ C_C = \033[0;36m
 
 # Programms names
 
-NAME = libft.a
-HNAME = libft.h
-TNAME = Libft_test
+NAME = fillit
+HNAME = fillit.h
+LNAME = libft.a
+#TNAME =
 
 # Dir/Files Path
 
@@ -50,85 +51,25 @@ S_PATH = ./srcs/
 H_PATH = ./includes/
 B_PATH = ./build/
 O_PATH = ./build/objs/
+L_PATH = ./libft/
 
 
 # Files
 
-SRC += $(S_PATH)ft_atoi.c
-SRC += $(S_PATH)ft_bzero.c
-SRC += $(S_PATH)ft_isalnum.c
-SRC += $(S_PATH)ft_isalpha.c
-SRC += $(S_PATH)ft_isascii.c
-SRC += $(S_PATH)ft_isdigit.c
-SRC += $(S_PATH)ft_isspace.c
-SRC += $(S_PATH)ft_isprint.c
-SRC += $(S_PATH)ft_itoa.c
-SRC += $(S_PATH)ft_lstadd.c
-SRC += $(S_PATH)ft_lstdel.c
-SRC += $(S_PATH)ft_lstdelone.c
-SRC += $(S_PATH)ft_lstfind.c
-SRC += $(S_PATH)ft_lstiter.c
-SRC += $(S_PATH)ft_lstlen.c
-SRC += $(S_PATH)ft_lstmap.c
-SRC += $(S_PATH)ft_lstmerge.c
-SRC += $(S_PATH)ft_lstnew.c
-SRC += $(S_PATH)ft_memalloc.c
-SRC += $(S_PATH)ft_memccpy.c
-SRC += $(S_PATH)ft_memchr.c
-SRC += $(S_PATH)ft_memcmp.c
-SRC += $(S_PATH)ft_memcpy.c
-SRC += $(S_PATH)ft_memdel.c
-SRC += $(S_PATH)ft_memmove.c
-SRC += $(S_PATH)ft_memset.c
-SRC += $(S_PATH)ft_putchar_fd.c
-SRC += $(S_PATH)ft_putchar.c
-SRC += $(S_PATH)ft_putendl_fd.c
-SRC += $(S_PATH)ft_putendl.c
-SRC += $(S_PATH)ft_putnbr_fd.c
-SRC += $(S_PATH)ft_putnbr.c
-SRC += $(S_PATH)ft_putstr_fd.c
-SRC += $(S_PATH)ft_putstr.c
-SRC += $(S_PATH)ft_strcat.c
-SRC += $(S_PATH)ft_strchr.c
-SRC += $(S_PATH)ft_strclen.c
-SRC += $(S_PATH)ft_strclr.c
-SRC += $(S_PATH)ft_strcmp.c
-SRC += $(S_PATH)ft_strcpy.c
-SRC += $(S_PATH)ft_strdup.c
-SRC += $(S_PATH)ft_strdel.c
-SRC += $(S_PATH)ft_strequ.c
-SRC += $(S_PATH)ft_striter.c
-SRC += $(S_PATH)ft_striteri.c
-SRC += $(S_PATH)ft_strjoin.c
-SRC += $(S_PATH)ft_strlcat.c
-SRC += $(S_PATH)ft_strlen.c
-SRC += $(S_PATH)ft_strncat.c
-SRC += $(S_PATH)ft_strncmp.c
-SRC += $(S_PATH)ft_strncpy.c
-SRC += $(S_PATH)ft_strnequ.c
-SRC += $(S_PATH)ft_strnew.c
-SRC += $(S_PATH)ft_strnstr.c
-SRC += $(S_PATH)ft_strmap.c
-SRC += $(S_PATH)ft_strmapi.c
-SRC += $(S_PATH)ft_strrchr.c
-SRC += $(S_PATH)ft_strrev.c
-SRC += $(S_PATH)ft_strsplit.c
-SRC += $(S_PATH)ft_strstr.c
-SRC += $(S_PATH)ft_strsub.c
-SRC += $(S_PATH)ft_strtrim.c
-SRC += $(S_PATH)ft_tolower.c
-SRC += $(S_PATH)ft_toupper.c
-SRC += $(S_PATH)get_next_line.c
+SRC += $(S_PATH)main.c
+SRC += $(S_PATH)fillit.c
 
 # Objects and Headers
 
 OBJ = $(patsubst $(S_PATH)%.c, $(O_PATH)%.o, $(SRC))
 HDR = $(H_PATH)$(HNAME)
+LIB = $(L_PATH)$(LNAME)
 
 # Variables
 
 C_GCC = gcc
-COMPL = $(C_GCC) -c -I$(H_PATH)
+CMPLC = $(C_GCC) -c -I$(H_PATH)
+CMPLO = $(C_GCC) -o
 BUILD = $(B_PATH) $(O_PATH)
 AR_RC = ar rc
 RANLI = ranlib
@@ -163,19 +104,16 @@ make:
 	$(MSG)
 	@$(MAKE) --no-print-directory all
 
-all: $(BUILD) $(NAME)
+all: libm $(BUILD) $(NAME)
 
 $(NAME): $(OBJ)
-	@$(AR_RC) $(NAME) $^
-	@$(ECHO) $(GCLAR) $@
-	@$(RANLI) $(NAME)
-	@$(ECHO) $(GCIND) $@
+	@$(ECHO) $(GCFIL) $(NAME)
+	@$(CMPLO) $(NAME) $(O_PATH)*.o $(LIB)
 	@$(ECHO) $(GCSUC)
 
 $(OBJ): $(O_PATH)%.o: $(S_PATH)%.c $(HDR)
-	@$(COMPL) $(CFLAG) $< -o $@
+	@$(CMPLC) $(CFLAG) $< -o $@
 	@$(ECHO) $(GCFIL) $@
-
 
 $(B_PATH):
 	@$(GCRUN)
@@ -210,6 +148,12 @@ fclean:
 	@$(ECHO) $(RMSHW) $(NAME)
 	@$(ECHO) $(FCSUC)
 
+libm:
+	@make -C $(L_PATH)
+
+libc:
+	@make fclean -C $(L_PATH)
+
 test:
 	@$(TESTR)
 	@git clone -q https://github.com/acuD1/$(TNAME).git $(B_PATH)test
@@ -220,6 +164,6 @@ test:
 
 
 re:
-	@$(MAKE) --no-print-directory fclean all
+	@$(MAKE) --no-print-directory libc fclean all
 
 endif
