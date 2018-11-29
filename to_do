@@ -4,8 +4,10 @@ Arthur:
 
 
 
+
 ###############
 Sam:
+-reader
 
 
 
@@ -13,7 +15,49 @@ Sam:
 
 
 ##############
-To do:
+```````````````````````
+ROADMAP
+````````````````````````
+1) Reader :
 
-- Reader (init map, )
-- Parsing (Backtracking)
+gnl (text)
+	return (inputmap)
+if (input map == good)
+		return (map)
+else
+	return (error)
+
+
+2) Parsing :
+
+backtracking(map)
+if (good)
+	return (newmap);
+else
+	return (error && del);
+
+
+main :
+
+Call reader (if map || 0)
+if (map)
+	call parrsing(map)
+		return (new map remplis);
+print map (remplis);
+
+
+
+
+##########READER################
+-> Open(txt)
+	->READ
+		->gnl
+			CHECK
+-> return (map || error)
+
+et autre ?..
+
+#########PARSER##################
+->Creer MAP (4x4)
+	-> Remplis MAP avec map
+		->
