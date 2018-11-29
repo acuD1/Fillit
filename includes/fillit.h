@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/11/28 12:23:00 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/11/29 20:04:26 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,18 @@
 # include "../libft/includes/libft.h"
 
 void	fillit(void);
+
+typedef struct  s_verif
+{
+    int     hash;
+    int     p;
+    int     eol;
+}               t_verif;
+
+typedef struct  s_tetri
+{
+    char        tetri[4][2];
+    char        letter;
+}               t_tetri;
 
 #endif
