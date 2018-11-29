@@ -15,4 +15,5 @@
 void	fillit(void)
 {
 	ft_putendl("Ready to work!");
+	return ;
 }
