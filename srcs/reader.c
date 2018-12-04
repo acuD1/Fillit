@@ -6,29 +6,30 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 17:32:35 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/04 17:27:23 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/04 18:58:12 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
 #include <fcntl.h>
 #include <unistd.h>
+#include <stdio.h>
 
-int     ft_verif(char *c, t_verif verif)
+int     ft_verif(char *c, t_verif *verif)
 {
 	if (*c == '#')
 	{
-		verif.hash += 1;
+		verif->hash += 1;
 		return (1);
 	}
 	else if (*c == '.')
 	{
-		verif.p += 1;
+		verif->p += 1;
 		return (1);
 	}
 	else if (*c == '\n')
 	{
-		verif.eol += 1;
+		verif->eol += 1;
 		return (1);
 	}
 	else
@@ -47,13 +48,13 @@ int     ft_reader(int fd, char map[4][6], int *n_read)//map de [4][6] pour \n et
 	verif.hash = 0;
 	verif.p = 0;
 	verif.eol = 0;
-	while (x <= 4) 
+	while (x < 4) 
 	{
 		y = 0;
-		while (y <= 6)
+		while (y < 6)
 		{
 			if ((*n_read = read(fd, buff, 1)) > 0)
-				if (ft_verif(buff, verif) == 1)
+				if (ft_verif(buff, &verif) == 1)
 					map[x][y] = *buff;
 			y++;
 		}
@@ -65,6 +66,8 @@ int     ft_reader(int fd, char map[4][6], int *n_read)//map de [4][6] pour \n et
 	else
 		return (1);
 }
+
+
 
 int		main(int ac, char **av)
 {
@@ -79,9 +82,11 @@ int		main(int ac, char **av)
 		ft_putendl("error");
 	out = ft_reader(fd, map, &n_read);
 	ft_putnbr(out);
-	if (out > 0)
-		while (map[x])
-			ft_putstr(map[x++]);
-	else
-		ft_putendl("error out");
+	ft_putchar('\n');
+//	if (out > 0)
+//		while (map[x])
+//			ft_putstr(map[x++]);
+//	else
+//		ft_putendl("error out");
+	return (0);
 }
