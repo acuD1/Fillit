@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 17:32:35 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/05 17:38:54 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/05 17:44:13 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int		check_tetri(char **tetri)
 	res = nb_link(tetri);
 	if ((verif.hash != 4 || verif.p != 12 || verif.eol != 4) && res == 6 || (res == 8))
 		return (1);
-	return (0); 
+	return (0);
 	//check
 	//si valid -> mettre les coor rela dans struct
 }
@@ -128,6 +128,31 @@ int		fill_list(char **tab)
 	return (0);
 }
 
+int		ft_reader(char *file)
+{
+	char	*line_tetris;
+	int		fd;
+	char 	*tab[4];
+	int 	i;
+
+	if (!(fd = (open(file, O_RDONLY))))
+	{
+		ft_putendl("error");
+		return (0);
+	}
+	i = 0;
+	while ((get_next_line(fd, &line_tetris)) && i < 4)
+	{
+		tab[i] = ft_strdup(line_tetris);
+		ft_putendl(line_tetris);
+		free(line_tetris);
+		i++;
+	}
+	close(fd);
+	return (0);
+}
+
+/*
 int     ft_reader(char *file)//map de [4][6] pour \n et oel
 {
 	char    *buff;
@@ -142,7 +167,7 @@ int     ft_reader(char *file)//map de [4][6] pour \n et oel
 	}
 	i = 0;
 	while (get_next_line(fd, &buff))
-	{	
+	{
 		tab[i] = ft_strdup(buff);
 		free(buff);
 		i++;
@@ -151,3 +176,4 @@ int     ft_reader(char *file)//map de [4][6] pour \n et oel
 	close(fd);
 	return (0);
 }
+*/
