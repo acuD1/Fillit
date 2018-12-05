@@ -57,7 +57,7 @@ L_PATH = ./libft/
 # Files
 
 SRC += $(S_PATH)main.c
-SRC += $(S_PATH)fillit.c
+SRC += $(S_PATH)reader.c
 
 # Objects and Headers
 
@@ -67,7 +67,7 @@ LIB = $(L_PATH)$(LNAME)
 
 # Variables
 
-C_GCC = gcc
+C_GCC = gcc -g
 CMPLC = $(C_GCC) -c -I$(H_PATH)
 CMPLO = $(C_GCC) -o
 BUILD = $(B_PATH) $(O_PATH)

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/04 17:14:51 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/05 17:22:57 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ typedef struct  s_verif
 
 typedef struct  s_tetri
 {
+    char        **matrix;
     char        tetri[4][2];
     char        letter;
 }               t_tetri;
+
+int     ft_reader(char *file);
 
 #endif

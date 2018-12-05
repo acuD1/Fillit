@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   reader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/28 11:24:39 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/05 17:21:41 by saneveu          ###   ########.fr       */
+/*   Created: 2018/12/03 10:50:38 by arsciand          #+#    #+#             */
+/*   Updated: 2018/12/05 14:37:54 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		main(int ac, char **av)
+int		do_read(char *file)
 {
-	if (ac != 2)
-		ft_putendl("usage : ./fillit [source_file]");
-	else
+	char	*line_tetris;
+	int		fd;
+	char 	*tab[4];
+	int 	i;
+
+	if (!(fd = (open(file, O_RDONLY))))
 	{
-		ft_reader(av[1]);
+		ft_putendl("error");
+		return (0);
 	}
+	i = 0;
+	while ((get_next_line(fd, &line_tetris)) && i < 4)
+	{
+		tab[i] = ft_strdup(line_tetris);
+		i++;
+	}
+	close(fd);
 	return (0);
 }
