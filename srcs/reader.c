@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 17:32:35 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/04 18:58:12 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/05 14:42:43 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,31 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
+
+int		nb_link(char map[4][6])
+{
+	int		x;
+	int		y;
+	int		link;
+
+	link = 0;
+	x = 0;
+	while (x < 4)
+	{
+		y = 0;
+		while (y < 6)
+		{
+			if (map[x][y] == '#')
+			{
+				map[x + 1][y] == '#' ? link += 2 : link;
+				map[x][y + 1] == '#' ? link += 2 : link;
+			}
+			y++;
+		}
+		x++;
+	}
+	return (link);
+}
 
 int     ft_verif(char *c, t_verif *verif)
 {
@@ -36,19 +61,20 @@ int     ft_verif(char *c, t_verif *verif)
 		return (0);
 }
 
-int     ft_reader(int fd, char map[4][6], int *n_read)//map de [4][6] pour \n et oel
+int     ft_reader(int fd, int *n_read)//map de [4][6] pour \n et oel
 {
 	int     res;
+	char	*tetri[4];
 	char    *buff;
 	t_verif verif;
-	int     x;
-	int     y;
+	int     i;
 
 	*n_read = 1;
 	verif.hash = 0;
 	verif.p = 0;
 	verif.eol = 0;
-	while (x < 4) 
+	//open
+	/*while (x < 4) 
 	{
 		y = 0;
 		while (y < 6)
@@ -60,11 +86,17 @@ int     ft_reader(int fd, char map[4][6], int *n_read)//map de [4][6] pour \n et
 		}
 		map[x][y] = '\0';
 		x++;
-	}
-	if (verif.hash != 4 || verif.p != 12 || verif.eol != 4)
+	}*/
+	i = 0;
+	while (get_next_line(fd, &buff) && i < 4)
+		tetri[i++] = ft_strdup(buff);
+	/*if (verif.hash != 4 || verif.p != 12 || verif.eol != 4)
 		return (0);
 	else
-		return (1);
+		res = nb_link(map);
+		return (res == 6 || res == 8 ? 1 : 0);
+	*/
+	return (0);
 }
 
 
@@ -72,7 +104,7 @@ int     ft_reader(int fd, char map[4][6], int *n_read)//map de [4][6] pour \n et
 int		main(int ac, char **av)
 {
 	int fd;
-	char map[4][6];
+	char **map;
 	int n_read;
 	int		x = 0;
 	int		y;
@@ -81,12 +113,14 @@ int		main(int ac, char **av)
 	if(!(fd = (open(av[1], O_RDONLY))))
 		ft_putendl("error");
 	out = ft_reader(fd, map, &n_read);
-	ft_putnbr(out);
+	//ft_putnbr(out);
+	//printf("%c\n", map[1][4]);
 	ft_putchar('\n');
 //	if (out > 0)
 //		while (map[x])
 //			ft_putstr(map[x++]);
 //	else
 //		ft_putendl("error out");
+	close(fd);
 	return (0);
 }
