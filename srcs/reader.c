@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 17:32:35 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/05 17:44:13 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/07 17:51:13 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
 int		nb_link(char **map)
 {
 	int		x;
@@ -62,7 +61,7 @@ int     ft_verif(char *c, t_verif *verif)
 	else
 		return (0);
 }
-
+/*
 int		check_tetri(char **tetri)
 {
 	int		res;
@@ -86,14 +85,16 @@ int		check_tetri(char **tetri)
 		}
 	}
 	res = nb_link(tetri);
-	if ((verif.hash != 4 || verif.p != 12 || verif.eol != 4) && res == 6 || (res == 8))
+	if ((verif.hash != 4 || verif.p != 12 || verif.eol != 4) 
+			&& (res == 6 || res == 8))
 		return (1);
 	return (0);
 	//check
 	//si valid -> mettre les coor rela dans struct
 }
+*/
 
-t_list	*init_list(void *content)
+t_list	*init_elem(void *content)
 {
 	t_list	*lst;
 
@@ -104,76 +105,82 @@ t_list	*init_list(void *content)
 	lst->next = NULL;
 	return (lst);
 
-}*/
+}
 
 int		fill_list(char **tab)
 {
-	//t_list  *lst;
+	t_list  *lst;
 	t_tetri *tetri;
-	char 	**matrix = NULL;
 	int		x;
-	//int		i;
+	int		i;
 
-	x = 0;
-	while (x < 4)
-	{
-		matrix[x] = ft_strdup(tab[x]);
-		x++;
-	}
 	if (!(tetri = ft_memalloc(sizeof(t_tetri))))
 		return (0);
-	tetri->matrix = matrix;
-	printf("%s\n", tetri->matrix[x]);
-	//lst = init_list(&tetri);
+	if (check_tetri(tab))
+		tetri->matrix = ft_strdup(tab);
+	lst->content = &tetri;
 	return (0);
 }
 
-int		ft_reader(char *file)
+int     ft_reader(int fd, char map[4][6], int *n_read)//map de [4][6] pour \n et oel
 {
-	char	*line_tetris;
-	int		fd;
-	char 	*tab[4];
-	int 	i;
+	int     res;
+	char    *buff;
+	t_verif verif;
+	int     x;
+	int     y;
 
-	if (!(fd = (open(file, O_RDONLY))))
+	*n_read = 1;
+	verif.hash = 0;
+	verif.p = 0;
+	verif.eol = 0;
+	//bzero map
+	while (x < 4) 
 	{
-		ft_putendl("error");
-		return (0);
+		y = 0;
+		while (y < 6)
+		{
+			if ((*n_read = read(fd, buff, 1)) > 0)
+				if (ft_verif(buff, &verif) == 1)
+					map[x][y] = *buff;
+			y++;
+		}
+		map[x][y] = '\0';
+		x++;
 	}
-	i = 0;
-	while ((get_next_line(fd, &line_tetris)) && i < 4)
-	{
-		tab[i] = ft_strdup(line_tetris);
-		ft_putendl(line_tetris);
-		free(line_tetris);
-		i++;
-	}
-	close(fd);
-	return (0);
+	if (verif.hash != 4 || verif.p != 12 || verif.eol != 4)
+		if (nb_link(map) == 6 || nb_link(map))
+			return (0);
+	else
+		return (-1);
 }
 
-/*
-int     ft_reader(char *file)//map de [4][6] pour \n et oel
+int     ft_parser(char *file)//map de [4][6] pour \n et oel
 {
 	char    *buff;
-	char	*tab[4];
+	char	map[4][6];
+	int		n_read;
 	int		fd;
-	int     i;
+	int		i;
 
 	if (!(fd = (open(file, O_RDONLY))))
 	{
 		ft_putendl("error");
 		return (0);
 	}
-	i = 0;
-	while (get_next_line(fd, &buff))
+	while (!(ft_reader(fd, map, n_read))
+	/*while ((res = get_next_line(fd, &buff)) > 0 && i < 4)
 	{
-		tab[i] = ft_strdup(buff);
-		free(buff);
+		tetri[i] = ft_strdup(buff);//free buff
+		ft_putendl();
 		i++;
+	}*/
+	fill_list(tetri);
+	if (res > 0)
+	{
+		ft_putendl("1");
+		return (1);
 	}
-	fill_list(tab);
 	close(fd);
 	return (0);
 }
-*/
