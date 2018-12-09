@@ -3,39 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/14 19:14:47 by arsciand          #+#    #+#             */
-/*   Updated: 2018/11/20 16:16:59 by arsciand         ###   ########.fr       */
+/*   Created: 2018/09/03 16:23:14 by saneveu           #+#    #+#             */
+/*   Updated: 2018/11/14 21:59:27 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(char const *s, char const *to_find, size_t len)
+char	*ft_strnstr(const char *src, const char *find, size_t n)
 {
 	size_t	i;
-	char	*s_c;
-	char	*to_find_c;
+	size_t	j;
 
-	if (!*to_find)
-		return ((char *)s);
-	while (len-- && *s)
+	i = 0;
+	if (!find[i])
+		return ((char *)src);
+	while (i < n && src[i])
 	{
-		if (*s == *to_find)
-		{
-			i = len;
-			s_c = (char *)s + 1;
-			to_find_c = (char *)to_find + 1;
-			while (i-- && *s_c && *to_find_c && *s_c == *to_find_c)
-			{
-				++s_c;
-				++to_find_c;
-			}
-			if (!*to_find_c)
-				return ((char *)s);
-		}
-		++s;
+		j = 0;
+		while (i + j < n && src[i + j] && find[j] && src[i + j] == find[j])
+			j++;
+		if (!find[j])
+			return ((char *)src + i);
+		i++;
 	}
 	return (NULL);
 }

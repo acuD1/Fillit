@@ -6,16 +6,16 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/05 17:22:57 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/09 16:52:45 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
-
 # include "../libft/includes/libft.h"
-
-void	fillit(void);
+# define COL 4
+# define ROW 6
+# define BUFF_LEN 1
 
 typedef struct  s_verif
 {
@@ -31,6 +31,8 @@ typedef struct  s_tetri
     char        letter;
 }               t_tetri;
 
-int     ft_reader(char *file);
-
+void	fillit(void);
+int     ft_parser(char *file);
+int     ft_reader(int fd, char map[COL][ROW], int *n_read);
+void	ft_init(char map[COL][ROW], t_verif *verif);
 #endif

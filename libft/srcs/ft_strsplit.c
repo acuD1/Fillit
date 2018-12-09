@@ -3,59 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/14 19:14:54 by arsciand          #+#    #+#             */
-/*   Updated: 2018/11/20 17:12:10 by arsciand         ###   ########.fr       */
+/*   Created: 2018/11/12 03:58:28 by saneveu           #+#    #+#             */
+/*   Updated: 2018/11/14 22:07:01 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	count_words(char const *s, char c)
+static int		len(const char *s, char c)
 {
-	size_t	n_words;
+	int	len;
 
-	n_words = 0;
-	while (*s)
-	{
-		if (*s == c)
-			s++;
-		else
-		{
-			while (*s != c && *s)
-				s++;
-			n_words++;
-		}
-	}
-	return (n_words);
+	len = 0;
+	while (s[len] && s[len] != c)
+		len++;
+	return (len);
 }
 
-char			**ft_strsplit(char const *s, char c)
+static int		ct(const char *s, char c)
 {
-	int		i;
-	int		len;
-	int		j;
-	char	**tab;
+	int	len;
+	int	i;
 
-	i = 0;
-	j = 0;
 	len = 0;
-	if (!c || !s)
-		return (NULL);
-	if (!(tab = ft_memalloc(sizeof(tab) * (count_words(s, c) + 1))))
-		return (NULL);
-	if (!tab)
-		return (NULL);
+	i = 0;
 	while (s[i])
 	{
-		while (s[i + len] && s[i + len] != c)
+		while (s[i] == c)
+			i++;
+		if (s[i] && s[i] != c)
 			len++;
-		if (len)
-			tab[j++] = ft_strsub(s, i, len);
-		i += len ? len : 1;
-		len = 0;
+		while (s[i] && s[i] != c)
+			i++;
 	}
-	tab[j] = NULL;
-	return (tab);
+	return (len);
+}
+
+char			**ft_strsplit(const char *s, char c)
+{
+	char	**dest;
+	int		i;
+	int		j;
+	int		k;
+
+	if (!s || !(dest = (char **)malloc(sizeof(char *) * (ct(s, c) + 1))))
+		return (0);
+	i = 0;
+	j = 0;
+	while (s[i])
+	{
+		k = 0;
+		while (s[i] == c)
+			i++;
+		if (s[i] && s[i] != c)
+		{
+			if (!(dest[j] = (char *)malloc(sizeof(char) * (len(&s[i], c) + 1))))
+				return (0);
+			while (s[i] && s[i] != c)
+				dest[j][k++] = s[i++];
+			dest[j++][k] = '\0';
+		}
+	}
+	dest[j] = NULL;
+	return (dest);
 }

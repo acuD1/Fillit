@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrev.c                                        :+:      :+:    :+:   */
+/*   ft_lst_pushback.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/11 15:51:19 by arsciand          #+#    #+#             */
-/*   Updated: 2018/11/21 09:40:54 by arsciand         ###   ########.fr       */
+/*   Created: 2018/12/09 15:31:38 by saneveu           #+#    #+#             */
+/*   Updated: 2018/12/09 15:42:53 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrev(char *s)
+void		ft_list_push_back(t_list **begin_list, void *content)
 {
-	size_t	len;
-	size_t	i;
-	char	tmp;
-
-	i = 0;
-	len = ft_strlen(s) - 1;
-	while (i < len)
+	if (*begin_list)
 	{
-		tmp = s[len];
-		s[len] = s[i];
-		s[i] = tmp;
-		i++;
-		len--;
+		if (((*begin_list)->next))
+			ft_list_push_back(&((*begin_list)->next), content);
+		else
+			((*begin_list)->next) = ft_create_elem(content);
 	}
-	return (s);
+	else
+		(*begin_list) = ft_create_elem(content);
 }

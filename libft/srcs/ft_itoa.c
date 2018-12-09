@@ -3,75 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/14 19:09:37 by arsciand          #+#    #+#             */
-/*   Updated: 2018/11/20 16:33:32 by arsciand         ###   ########.fr       */
+/*   Created: 2018/11/12 06:45:01 by saneveu           #+#    #+#             */
+/*   Updated: 2018/11/15 17:34:33 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		*ft_strlendup(char *s, size_t len)
+static void		itoa_is_neg(int *nb, int *neg)
 {
-	char	*dst;
-
-	if (!(dst = ft_memalloc(len)))
-		return (NULL);
-	ft_strcpy(dst, s);
-	return (dst);
+	if (*nb < 0)
+	{
+		*nb *= -1;
+		*neg = 1;
+	}
 }
 
-static int		count_n_len(int n)
+static int		len_init(int nb)
 {
-	int		len;
-	int		zero;
+	int len;
 
-	len = 0;
-	zero = 0;
-	if (n == 0)
-		zero++;
-	if (n < 0)
-		n = -n;
-	while (n > 0)
-	{
-		n /= 10;
+	len = 2;
+	while (nb /= 10)
 		len++;
-	}
-	return (len + zero + 1);
+	return (len);
 }
 
-static void		do_conv(char *s, int n)
+char			*ft_itoa(int nb)
 {
-	size_t	i;
-	int		sign;
-
-	i = 0;
-	sign = n;
-	if (n < 0)
-		n = -n;
-	while (n > 0)
-	{
-		s[i++] = n % 10 + '0';
-		n /= 10;
-	}
-	if (sign < 0)
-		s[i++] = '-';
-	s[i] = '\0';
-}
-
-char			*ft_itoa(int n)
-{
+	int		i;
 	int		len;
-	char	*s;
+	int		neg;
+	char	*dest;
 
-	len = count_n_len(n);
-	if (n == 0)
-		return (ft_strlendup("0", len));
-	if (n == -2147483648)
-		return (ft_strlendup("-2147483648", len));
-	if (!(s = ft_strnew(len)))
-		return (NULL);
-	do_conv(s, n);
-	return (ft_strrev(s));
+	neg = 0;
+	itoa_is_neg(&nb, &neg);
+	if (nb == -2147483648)
+		return (ft_strdup("-2147483648"));
+	i = nb;
+	len = len_init(nb);
+	len += neg;
+	if (!(dest = (char *)malloc(sizeof(char) * len)))
+		return (0);
+	if (neg)
+		dest[0] = '-';
+	dest[--len] = '\0';
+	while (len--)
+	{
+		dest[len] = nb % 10 + '0';
+		nb /= 10;
+	}
+	if (neg)
+		dest[0] = '-';
+	return (dest);
 }

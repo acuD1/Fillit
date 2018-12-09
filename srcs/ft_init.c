@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlen.c                                        :+:      :+:    :+:   */
+/*   ft_clean.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/15 16:12:33 by arsciand          #+#    #+#             */
-/*   Updated: 2018/11/20 16:21:58 by arsciand         ###   ########.fr       */
+/*   Created: 2018/12/09 15:27:18 by saneveu           #+#    #+#             */
+/*   Updated: 2018/12/09 16:52:31 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
 
-int		ft_lstlen(t_list *lst)
+void	ft_init(char map[COL][ROW], t_verif *verif)
 {
-	t_list	*link;
-	int		len;
+	int c;
 
-	len = 0;
-	link = lst;
-	if (!lst)
-		return (0);
-	while (link->next)
-	{
-		link = link->next;
-		len++;
-	}
-	return (len + 1);
+	c = COL;
+	verif->hash = 0;
+	verif->p = 0;
+	verif->eol = 0;
+	while (c--)
+		ft_bzero(map[c], ROW);
 }

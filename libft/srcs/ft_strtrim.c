@@ -3,32 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/14 19:15:06 by arsciand          #+#    #+#             */
-/*   Updated: 2018/11/20 16:21:17 by arsciand         ###   ########.fr       */
+/*   Created: 2018/11/12 03:09:19 by saneveu           #+#    #+#             */
+/*   Updated: 2018/11/14 22:01:03 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_iswhitespace(int c)
+char	*ft_strtrim(const char *s)
 {
-	return (c == ' ' || c == '\t' || c == '\n' ? 1 : 0);
-}
-
-char		*ft_strtrim(char const *s)
-{
-	size_t	i;
-	size_t	len;
+	char	*dest;
+	int		len;
+	int		i;
 
 	if (!s)
 		return (NULL);
-	i = 0;
-	len = ft_strlen(s);
-	while (s && ft_iswhitespace(s[i]))
-		i++;
-	while (len > i && ft_iswhitespace(s[len - 1]))
+	i = -1;
+	len = ft_strlen((char *)s);
+	while (s[len - 1] == ' ' || s[len - 1] == '\n' || s[len - 1] == '\t')
 		len--;
-	return (ft_strsub(s, i, len - i));
+	while (s[++i] == ' ' || s[i] == '\n' || s[i] == '\t')
+		len--;
+	if (len <= 0)
+		len = 0;
+	if (!(dest = (char *)malloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	s += i;
+	i = -1;
+	while (++i < len)
+		dest[i] = *s++;
+	dest[i] = '\0';
+	return (dest);
 }

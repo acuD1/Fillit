@@ -1,17 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ft_create_elem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/11 13:09:00 by arsciand          #+#    #+#             */
-/*   Updated: 2018/11/20 15:57:20 by arsciand         ###   ########.fr       */
+/*   Created: 2018/12/09 15:36:19 by saneveu           #+#    #+#             */
+/*   Updated: 2018/12/09 15:37:35 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isspace(int c)
+#include "libft.h"
+
+t_list		*ft_create_elem(void *content)
 {
-	return (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f' ||
-			c == '\r' ? 1 : 0);
+	t_list	*list;
+
+	if (!(list = (t_list *)malloc(sizeof(t_list))))
+		return (NULL);
+	list->content = content;
+    list->content_size = 0;
+	list->next = NULL;
+	return (list);
 }

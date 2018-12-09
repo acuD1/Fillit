@@ -3,67 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 18:50:58 by arsciand          #+#    #+#             */
-/*   Updated: 2018/11/28 13:40:04 by arsciand         ###   ########.fr       */
+/*   Created: 2018/11/19 17:57:21 by saneveu           #+#    #+#             */
+/*   Updated: 2018/12/09 16:15:18 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "unistd.h"
-#include "stdlib.h"
 
-static int	check_line(char **stack)
+int		ft_chrandsub(char **save, char **line, int fd, int res)
 {
-	size_t	i;
+	int		len;
 	char	*tmp;
 
-	i = 0;
-	tmp = *stack;
-	while (tmp[i] != '\n')
-		if (!(tmp[i++]))
-			return (0);
+	len = 0;
+	while (save[fd][len] != '\n' && save[fd][len] != '\0')
+		len++;
+	if (save[fd][len] == '\n')
+	{
+		*line = ft_strsub(save[fd], 0, len);
+		tmp = ft_strdup(save[fd] + len + 1);
+		free(save[fd]);
+		save[fd] = tmp;
+		if (save[fd][0] == '\0')
+			ft_strdel(&save[fd]);
+	}
+	else if (save[fd][len] == '\0')
+	{
+		if (res == BUFF_SIZE)
+			return (get_next_line(fd, line));
+		*line = ft_strdup(save[fd]);
+		ft_strdel(&save[fd]);
+	}
 	return (1);
 }
 
-static int	init(int const fd, char **line, char *buff, char **stack)
+int		get_next_line(const int fd, char **line)
 {
-	if (fd == -1 || FD_MAXSET > 4864 || BUFF_SIZE < 1
-			|| !line || read(fd, buff, 0))
-		return (0);
-	if (!(stack[fd]))
-		if (!(stack[fd] = ft_strnew(0)))
-			return (0);
-	return (1);
-}
+	static char		*save[1024];
+	char			buff[BUFF_SIZE + 1];
+	char			*tmp;
+	int				res;
 
-int			get_next_line(int const fd, char **line)
-{
-	static char	*stack[FD_MAXSET];
-	char		*buff;
-	char		*tmp;
-	int			ret;
-
-	if (!(buff = ft_memalloc(BUFF_SIZE + 1)) || (!init(fd, line, buff, stack)))
+	if (fd < 0)
 		return (-1);
-	while (!(check_line(&stack[fd])) && (ret = read(fd, buff, BUFF_SIZE)))
+	while ((res = read(fd, buff, BUFF_SIZE)) > 0)
 	{
-		buff[ret] = '\0';
-		tmp = stack[fd];
-		stack[fd] = ft_strjoin(tmp, buff);
-		free(tmp);
+		buff[res] = '\0';
+		if (save[fd] == NULL)
+			save[fd] = ft_strnew(1);
+		tmp = ft_strjoin(save[fd], buff);
+		free(save[fd]);
+		save[fd] = tmp;
+		if (!ft_strchr(buff, '\n'))
+			break ;
 	}
-	free(buff);
-	*line = ft_strsub(stack[fd], 0, ft_strclen(stack[fd], '\n'));
-	if (*stack[fd])
-	{
-		if (check_line(&stack[fd]))
-			ft_strcpy(stack[fd], ft_strchr(stack[fd], '\n') + 1);
-		else
-			ft_strdel(&stack[fd]);
-		return (1);
-	}
-	free(stack[fd]);
-	return (0);
+	if (res < 0)
+		return (-1);
+	else if (res == 0 && (save[fd] == NULL || save[fd][0] == '\0'))
+		return (0);
+	return (ft_chrandsub(save, line, fd, res));
 }
