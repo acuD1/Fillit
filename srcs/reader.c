@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 17:32:35 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/09 19:02:15 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/10 20:30:58 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,39 +55,6 @@ int     ft_verif(char *c, t_verif *verif)
 }
 
 /*
-int		check_tetri(char **tetri)
-{
-	int		res;
-	int		x;
-	int		y;
-	t_verif verif;
-
-	verif.hash = 0;
-	verif.p = 0;
-	verif.eol = 0;
-	x = 0;
-	while (tetri[x])
-	{
-		y = 0;
-		while (tetri[x][y])
-		{
-			if (ft_verif(tetri[x][y], &verif))
-				y++;
-			else
-				return (-1);
-		}
-	}
-	res = nb_link(tetri);
-	if ((verif.hash != 4 || verif.p != 12 || verif.eol != 4) 
-			&& (res == 6 || res == 8))
-		return (1);
-	return (0);
-	//check
-	//si valid -> mettre les coor rela dans struct
-}
-*/
-
-/*
 int		fill_list(char tab[COL][ROW])
 {
 	t_list  *lst;
@@ -97,19 +64,17 @@ int		fill_list(char tab[COL][ROW])
 
 	if (!(tetri = ft_memalloc(sizeof(t_tetri))))
 		return (0);
-	if (check_tetri(tab))
-		tetri->matrix = ft_strdup(tab);
-	lst->content = &tetri;
-	return (0);
+	tetri->matrix = ft_strdup(tab);
+	return (lst->content = &tetri;
 }
 */
-
 int     ft_reader(int fd, char map[COL][ROW], int *n_read)//map de [4][6] pour \n et oel
 {
 	char    buff[BUFF_LEN];
 	t_verif verif;
 	int     x;
 	int     y;
+	int		res;
 
 	ft_init(map, &verif);
 	*n_read = 1;
@@ -126,12 +91,27 @@ int     ft_reader(int fd, char map[COL][ROW], int *n_read)//map de [4][6] pour \
 		map[x][y] = '\0';
 		x++;
 	}
-	if (verif.hash != 4 || verif.p != 12 || verif.eol != 4)
-		return (-1);
-	else if (nb_link(map) == 6 || nb_link(map) == 8)
-		return (1);
+	res = nb_link(map);
+	printf("%d\n", res);
+	if ((verif.hash != 4 || verif.p != 12 || verif.eol != 4) || !(res == 6 || res == 8)) 
+			return (-1);
+//faire un read de 1 si c'est un \n return 1
 	return (0);
 }
+
+/*static int	check_line(char **stack)
+{
+	size_t	i;
+	char	*tmp;
+
+	i = 0;
+	tmp = *stack;
+	while (*tmp != '\n')
+		if (!(tmp[i++]))
+			return (0);
+	return (1);
+}
+*/
 
 int     ft_parser(char *file)//map de [4][6] pour \n et oel
 {
@@ -147,11 +127,11 @@ int     ft_parser(char *file)//map de [4][6] pour \n et oel
 		return (-1);
 	}
 	res = 1;
-	if ((res = ft_reader(fd, map, &n_read)) == -1)
+	if ((res = ft_reader(fd, map, &n_read)) > 0)
 	{
-		ft_putendl("error");
 		return (-1);
 	}
+	printf("retour reader : %d\n", res);
 	i = 0;
 	while (i < 4)
 	{
