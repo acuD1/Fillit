@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 17:32:35 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/10 20:30:58 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/11 15:35:25 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,25 @@ int		fill_list(char tab[COL][ROW])
 	return (lst->content = &tetri;
 }
 */
+
+int		next_tetri(int fd, char *buff)
+{
+	int ret;
+
+	ret = 0;
+	if ((ret = read(fd, buff, 1)) == 0)
+	{
+		printf("return 0.\n");
+		return (0);
+	}
+	if (*buff == '\n')
+	{
+		printf("return 1.\n");
+		return (1);
+	}
+	return (0);
+}
+
 int     ft_reader(int fd, char map[COL][ROW], int *n_read)//map de [4][6] pour \n et oel
 {
 	char    buff[BUFF_LEN];
@@ -95,8 +114,8 @@ int     ft_reader(int fd, char map[COL][ROW], int *n_read)//map de [4][6] pour \
 	printf("%d\n", res);
 	if ((verif.hash != 4 || verif.p != 12 || verif.eol != 4) || !(res == 6 || res == 8)) 
 			return (-1);
-//faire un read de 1 si c'est un \n return 1
-	return (0);
+	//faire un read de 1 si c'est un \n return 1
+	return (next_tetri(fd, buff));
 }
 
 /*static int	check_line(char **stack)
@@ -127,17 +146,26 @@ int     ft_parser(char *file)//map de [4][6] pour \n et oel
 		return (-1);
 	}
 	res = 1;
-	if ((res = ft_reader(fd, map, &n_read)) > 0)
+	i = 0;
+	while ((res = ft_reader(fd, map, &n_read)) == 1)
 	{
-		return (-1);
+		while (i < 4)
+		{
+			ft_putstr(map[i++]);
+		}
+	}
+	i = 0;
+	while (i < 4)
+	{
+		ft_putstr(map[i++]);
 	}
 	printf("retour reader : %d\n", res);
-	i = 0;
+/*	i = 0;
 	while (i < 4)
 	{
 		ft_putstr(map[i]);
 		i++;
-	}
+	}*/
 	//fill_list(map[COL][ROW]);
 	close(fd);
 	return (0);
