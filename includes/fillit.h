@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/09 16:52:45 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/11 16:17:03 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct  s_tetri
     char        letter;
 }               t_tetri;
 
-void	fillit(void);
-int     ft_parser(char *file);
-int     ft_reader(int fd, char map[COL][ROW], int *n_read);
-void	ft_init(char map[COL][ROW], t_verif *verif);
+void	    fillit(void);
+int         ft_parser(char *file, t_list **list);
+int         ft_reader(int fd, char map[COL][ROW]);
+void	    ft_init(char map[COL][ROW], t_verif *verif);
 #endif
