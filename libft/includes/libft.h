@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 17:53:59 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/09 16:10:41 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/12 04:12:08 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 
 # define BUFF_SIZE 8
 
@@ -22,7 +23,10 @@ typedef struct	s_list
 	void			*content;
 	size_t			content_size;
 	struct s_list	*next;
-}				t_list;
+}				t_list, *list;//list definie le type list comme pointeur
+							  //sur t_list
+
+/*--------------------------------------------*/
 
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);

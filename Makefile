@@ -58,7 +58,8 @@ L_PATH = ./libft/
 
 SRC += $(S_PATH)main.c
 SRC += $(S_PATH)reader.c
-SRC += $(S_PATH)ft_init.c
+SRC += $(S_PATH)ft_tools.c
+SRC += $(S_PATH)parser.c
 
 # Objects and Headers
 
