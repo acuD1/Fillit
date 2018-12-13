@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/13 08:42:57 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/13 09:44:46 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 # define ROW 6
 # define BUFF_LEN 1
 
-typedef struct  s_verif
+typedef struct	s_verif
 {
-	int		hash;
-	int		p;
-	int		eol;
+	int			hash;
+	int			p;
+	int			eol;
 }				t_verif;
 
 typedef struct	s_tetri
@@ -30,13 +30,13 @@ typedef struct	s_tetri
 	char		letter;
 }				t_tetri;
 
-void		fillit(void);
-list		ft_parser(char *file);
-int			ft_reader(int fd, char map[COL][ROW]);
-void		ft_init(char map[COL][ROW], t_verif *verif);
-int			next_tetri(int fd, char *buff);
-int			ft_verif(char *c, t_verif *verif);
-int			nb_link(char map[COL][ROW]);
-int			fill_list(char tab[COL][ROW], list first);
+void			fillit(void);
+list			ft_parser(char *file);
+int				ft_reader(int fd, char map[COL][ROW]);
+void			ft_init(char map[COL][ROW], t_verif *verif);
+int				next_tetri(int fd, char *buff);
+int				ft_verif(char *c, t_verif *verif);
+int				nb_link(char map[COL][ROW]);
+int				fill_list(char tab[COL][ROW], list first);
 
 #endif
