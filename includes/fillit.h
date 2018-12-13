@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/12 03:53:15 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/13 21:17:50 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # define ROW 6
 # define BUFF_LEN 1
 
+# include <stdio.h>// a delete
+
 typedef struct  s_verif
 {
     int     hash;
@@ -26,7 +28,7 @@ typedef struct  s_verif
 
 typedef struct  s_tetri
 {
-    char        coor[4][2];
+    int         coor[4][2];
     char        letter;
 }               t_tetri;
 

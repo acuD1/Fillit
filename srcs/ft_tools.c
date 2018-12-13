@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:02:08 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/12 04:05:56 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/13 20:10:01 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,20 @@ void			ft_letter(list first)
 		tetri->letter = c;
 		c += 1;
 		list = list->next;
+	}
+}
+
+void	ft_letter_assignation(list first, t_tetri *tetri)
+{
+	int		cnt;
+	list	tmp;
+
+	tmp = first;	
+	cnt = 0;
+	while (tmp)
+	{
+		tetri->letter = (char)('A' + cnt);
+		cnt++;
+		tmp = tmp->next;
 	}
 }

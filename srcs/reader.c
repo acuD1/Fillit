@@ -6,15 +6,11 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 17:32:35 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/12 02:58:34 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/13 17:50:02 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 int		nb_link(char map[COL][ROW])
 {
@@ -63,6 +59,8 @@ int		next_tetri(int fd, char *buff)
 		return (0);
 	if (*buff == '\n')
 		return (1);
+	else if (*buff == '.' || *buff == '#')
+		return (-1);
 	return (0);
 }
 
@@ -91,11 +89,9 @@ int     ft_reader(int fd, char map[COL][ROW])//map de [4][6] pour \n et oel
 		x++;
 	}
 	res = nb_link(map);
-	//printf("%d\n", res);
 	if ((verif.hash != 4 || verif.p != 12 || verif.eol != 4) 
 	|| !(res == 6 || res == 8)) 
 			return (-1);
-	//faire un read de 1 si c'est un \n return 1
 	return (next_tetri(fd, buff));
 }
 
