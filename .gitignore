@@ -17,7 +17,7 @@ libft/*.a
 **/*.out
 
 # Debug files
-**/*.dSYM/
+**/*.dSYM
 
 # Vscode
 .vscode
