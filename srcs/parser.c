@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:05:26 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/14 13:45:10 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/14 14:18:03 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int			fill_list(char map[COL][ROW], list first)
 		first->next = ft_lstnew(&tetri, sizeof(t_tetri));
 	else
 		ft_list_push_back(&first, tetri);
+	printf("pushback succed\n");
 	return (1);
 }
 
