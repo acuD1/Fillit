@@ -1,2 +1,1 @@
-Fillit project - arsciand @ 42
-		 saneveu @ 42
+Fillit project - arsciand & saneveu @ 42

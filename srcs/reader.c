@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   reader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 17:32:35 by saneveu           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/12/13 17:50:02 by saneveu          ###   ########.fr       */
+=======
+/*   Updated: 2018/12/13 09:42:02 by arsciand         ###   ########.fr       */
+>>>>>>> 54b22d4eee387e8a55187c931a4432562e343727
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +41,7 @@ int		nb_link(char map[COL][ROW])
 	return (link);
 }
 
-int     ft_verif(char *c, t_verif *verif)
+int		ft_verif(char *c, t_verif *verif)
 {
 	if (*c == '#')
 		verif->hash += 1;
@@ -64,18 +68,18 @@ int		next_tetri(int fd, char *buff)
 	return (0);
 }
 
-int     ft_reader(int fd, char map[COL][ROW])//map de [4][6] pour \n et oel
+int		ft_reader(int fd, char map[COL][ROW])//map de [4][6] pour \n et oel
 {
-	char    buff[BUFF_LEN];
-	t_verif verif;
-	int     x;
-	int     y;
+	char	buff[BUFF_LEN];
+	t_verif	verif;
+	int		x;
+	int		y;
 	int		res;
 
 	ft_init(map, &verif);
 	res = 1;
 	x = 0;
-	while (x < 4) 
+	while (x < 4)
 	{
 		y = 0;
 		while (y < 5)

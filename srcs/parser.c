@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:05:26 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/14 12:06:54 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/14 12:20:32 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_tetri		*fill_coord(char tab[COL][ROW])
 int			fill_list(char map[COL][ROW], list first)
 {
 	t_tetri 		*tetri;
-	
+
 	if (!(tetri = fill_coord(map)))
 	{	
 		free(tetri);
@@ -76,10 +76,10 @@ list		ft_parser(char *file)//map de [4][6] pour \n et oel
 	char	map[COL][ROW];
 	int		fd;
 	int		res;
-    list    list;
+	list	list;
 
 	if(!(list = (t_list *)malloc(sizeof(t_list))))
-        return (NULL);
+		return (NULL);
 	if (!(fd = (open(file, O_RDONLY))))
 		return (NULL);
 	res = 1;
