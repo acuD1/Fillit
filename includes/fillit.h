@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/14 12:21:53 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/14 15:16:25 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,8 @@ int				next_tetri(int fd, char *buff);
 int				ft_verif(char *c, t_verif *verif);
 int				nb_link(char map[COL][ROW]);
 int				fill_list(char tab[COL][ROW], list first);
+void			printlist(list first);
+void			printcoor(t_tetri *tetri);
+void			printmap(char map[COL][ROW], int n);
 
 #endif

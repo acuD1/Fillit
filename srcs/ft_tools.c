@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:02:08 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/14 13:48:57 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/14 15:17:25 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_letter_assignation(list first, t_tetri *tetri)
 	}
 }
 
-//My conv letter
+//BETA FUNCTIONS
 
 void	convert(char map[COL][ROW], char c)
 {
@@ -73,4 +73,44 @@ void	convert(char map[COL][ROW], char c)
 				map[x][y] = (char)c;
 		}
 	}
+}
+
+void	printlist(list first)
+{
+	t_list	*link;
+
+	link = first;
+	while (link != NULL)
+	{
+		printf("%d\n", (char)link->content + '0');
+		link = link->next;
+	}
+}
+
+void	printcoor(t_tetri *tetri)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (tetri->coor[i][j])
+	{
+		printf("#|%d|", i);
+		printf("y = %d ", tetri->coor[i][j]);
+		printf("x = %d ", tetri->coor[i][j + 1]);
+		printf("\n");
+		i++;
+	}
+	printf("-----------------\n");
+}
+
+void	printmap(char map[COL][ROW], int n)
+{
+	int i;
+
+	i = 0;
+	printf("MAP %d\n", n);
+	while (i < 4)
+		printf("%s", map[i++]);
 }

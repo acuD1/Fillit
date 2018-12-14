@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:05:26 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/14 14:23:57 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/14 15:17:28 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,14 @@ t_tetri		*fill_coord(char tab[COL][ROW])
 		{
 			if (tab[a][b] == '#')
 			{
-				tetri->coor[x][y] = a; //y
-				tetri->coor[x][y + 1] = b; //x
+				tetri->coor[x][y] = a;
+				tetri->coor[x][y + 1] = b;
 				x++;
 			}
 			b++;
 		}
 		a++;
 	}
-	int i;
-	int j;
-	i = 0;
-	j = 0;
-	/*while (tetri->coor[i][j])
-	{
-		printf("y = %d", tetri->coor[i][j]);
-		printf("x = %d", tetri->coor[i][j + 1]);
-		i++;
-	}
-	*/
-	//revoie tetri apres calcul des coordonnes
 	return (tetri);
 }
 
@@ -64,12 +52,13 @@ int			fill_list(char map[COL][ROW], list first)
 		free(tetri);
 		return (0);
 	}
+	printcoor(tetri);	//A DELETE
 	if (first->next == NULL)
 		first->next = ft_lstnew(&tetri, sizeof(t_tetri));
 	else
 	{
 		ft_list_push_back(&first, tetri);
-		printf("pushback succed\n");
+		printf("pushback succed\n\n"); //A DELETE
 	}
 	return (1);
 }
@@ -79,7 +68,6 @@ list		ft_parser(char *file)//map de [4][6] pour \n et oel
 	char	map[COL][ROW];
 	int		fd;
 	int		res;
-	int		i;
 	int		n;
 	list	list;
 
@@ -96,15 +84,13 @@ list		ft_parser(char *file)//map de [4][6] pour \n et oel
 			ft_putendl("error");
 			return (NULL);
 		}
-		i = 0;
-		while (i < 4)
-			printf("map|%d|%s",n ,map[i++]);
-		n++;
+		printmap(map, n++);
 		if (!(fill_list(map, list)))
 			return (NULL);
 	}
-	//ft_letter() parcour list et assigne une lettre a chaque tetri de content
-	printf("retour reader : %d\n", res);
+	printf("size de la list : %zu\n", ft_lstsize(list));
+	printlist(list);
+	printf("FIN du PGR et retour reader : %d\n", res);
 	close(fd);
 	return (0);
 }
