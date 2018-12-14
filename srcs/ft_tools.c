@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tools.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:02:08 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/14 15:17:25 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/14 16:35:31 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	printcoor(t_tetri *tetri)
 
 	i = 0;
 	j = 0;
-	while (tetri->coor[i][j])
+	while (i < 4)
 	{
 		printf("#|%d|", i);
 		printf("y = %d ", tetri->coor[i][j]);
