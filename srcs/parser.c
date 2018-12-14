@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:05:26 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/14 19:53:48 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/14 21:03:23 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,27 +77,27 @@ t_tetri		*fill_coord(char tab[COL][ROW])
 		}
 		a++;
 	}
-	printcoor(tetri);
-	absolut_coord(tetri);
-	printf("absolutcoor :\n");
+	tetri = absolut_coord(tetri);
 	return (tetri);
 }
 
 int			fill_list(char map[COL][ROW], list first)
 {
 	t_tetri 		*tetri;
-	list			tmp;
 
-	tetri = NULL;
 	if (!(tetri = fill_coord(map)))
 	{
 		free(tetri);
 		return (0);
 	}
-	tmp = first;
 	printcoor(tetri);	//A DELETE
-	ft_list_push_back(&tmp, tetri);
-	ft_putstr("pushback succed\n\n"); //A DELETE
+	if (first->next == NULL)
+		first->next = ft_lstnew(&tetri, sizeof(t_tetri));
+	else
+	{
+		ft_list_push_back(&first, tetri);
+		printf("pushback succed\n\n"); //A DELETE
+	}
 	return (1);
 }
 
@@ -127,7 +127,7 @@ list		ft_parser(char *file)//map de [4][6] pour \n et oel
 			return (NULL);
 	}
 	printf("size de la list : %zu\n", ft_lstsize(list));
-	//printlist(list);
+	printlist(list);
 	printf("FIN du PGR et retour reader : %d\n", res);
 	close(fd);
 	return (0);
