@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tools.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:02:08 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/14 11:48:13 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/14 13:48:57 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void			ft_letter(list first)
 	t_list		*list;
 	t_tetri		*tetri;
 	char		c;
-	
+
 	c = 'A';
 	list = first;
 	while (list)
@@ -46,12 +46,31 @@ void	ft_letter_assignation(list first, t_tetri *tetri)
 	int		cnt;
 	list	tmp;
 
-	tmp = first;	
+	tmp = first;
 	cnt = 0;
 	while (tmp)
 	{
 		tetri->letter = (char)('A' + cnt);
 		cnt++;
 		tmp = tmp->next;
+	}
+}
+
+//My conv letter
+
+void	convert(char map[COL][ROW], char c)
+{
+	int x;
+	int y;
+
+	x = -1;
+	while (++x < 4)
+	{
+		y = -1;
+		while (++y < 5)
+		{
+			if (map[x][y] == '#')
+				map[x][y] = (char)c;
+		}
 	}
 }
