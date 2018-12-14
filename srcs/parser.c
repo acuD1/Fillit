@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:05:26 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/13 21:51:39 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/14 12:06:54 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ t_tetri		*fill_coord(char tab[COL][ROW])
 		{
 			if (tab[a][b] == '#')
 			{
-				tetri->coor[x][y] = a / 4;
-				tetri->coor[x][y + 1] = b % 4;
+				tetri->coor[x][y] = a; //y
+				tetri->coor[x][y + 1] = b; //x
 				x++;
 			}
 			b++;
@@ -44,12 +44,13 @@ t_tetri		*fill_coord(char tab[COL][ROW])
 	int j;
 	i = 0;
 	j = 0;
-	while (tetri->coor[i][j])
+	/*while (tetri->coor[i][j])
 	{
 		printf("y = %d", tetri->coor[i][j]);
 		printf("x = %d", tetri->coor[i][j + 1]);
 		i++;
 	}
+	*/
 	//revoie tetri apres calcul des coordonnes
 	return (tetri);
 }
@@ -65,8 +66,8 @@ int			fill_list(char map[COL][ROW], list first)
 	}
 	if (first->next == NULL)
 		first->next = ft_lstnew(&tetri, sizeof(t_tetri));
-	else if (first->next)
-		ft_list_push_back(&first, &tetri);
+	else
+		ft_list_push_back(&first, tetri);
 	return (1);
 }
 

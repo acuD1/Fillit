@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 17:53:59 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/12 04:12:08 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/14 11:41:28 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ typedef struct	s_list
 	void			*content;
 	size_t			content_size;
 	struct s_list	*next;
-}				t_list, *list;//list definie le type list comme pointeur
-							  //sur t_list
+}				t_list, *list;
 
 /*--------------------------------------------*/
 
