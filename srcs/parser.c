@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:05:26 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/14 21:03:23 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/15 06:54:15 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,8 @@ t_tetri		*absolut_coord(t_tetri *tetri)
 	return (fix_neg(tetri));
 }
 
-t_tetri		*fill_coord(char tab[COL][ROW])
+t_tetri		*fill_coord(char tab[COL][ROW], t_tetri *tetri)
 {
-	t_tetri		*tetri;
 	int			x;
 	int			y;
 	int			a;
@@ -59,8 +58,6 @@ t_tetri		*fill_coord(char tab[COL][ROW])
 
 	x = 0;
 	y = 0;
-	if(!(tetri = (t_tetri *)malloc(sizeof(t_tetri))))
-		return (NULL);
 	a = 0;
 	while (a < 4)
 	{
@@ -78,26 +75,19 @@ t_tetri		*fill_coord(char tab[COL][ROW])
 		a++;
 	}
 	tetri = absolut_coord(tetri);
+	printcoor(tetri);
 	return (tetri);
 }
 
-int			fill_list(char map[COL][ROW], list first)
+int			fill_list(char map[COL][ROW], t_list **first)
 {
 	t_tetri 		*tetri;
 
-	if (!(tetri = fill_coord(map)))
-	{
-		free(tetri);
-		return (0);
-	}
-	printcoor(tetri);	//A DELETE
-	if (first->next == NULL)
-		first->next = ft_lstnew(&tetri, sizeof(t_tetri));
-	else
-	{
-		ft_list_push_back(&first, tetri);
-		printf("pushback succed\n\n"); //A DELETE
-	}
+	if (!(tetri = (t_tetri *)malloc(sizeof(t_tetri))))
+		return (0);		// Ou fonction error
+	tetri = fill_coord(map, tetri);																				//A DELETE
+	ft_list_push_back(first, tetri);
+	printf("pushback succed\n\n"); //A DELEt
 	return (1);
 }
 
@@ -107,11 +97,12 @@ list		ft_parser(char *file)//map de [4][6] pour \n et oel
 	int		fd;
 	int		res;
 	int		n;
-	list	list;
+	t_list	*list;
+	t_list	**begin_list;
 
-	if(!(list = (t_list *)malloc(sizeof(t_list))))
-		return (NULL);
 	if (!(fd = (open(file, O_RDONLY))))
+		return (NULL);
+	if(!(list = (t_list *)malloc(sizeof(t_list))))
 		return (NULL);
 	res = 1;
 	n = 0;
@@ -119,16 +110,16 @@ list		ft_parser(char *file)//map de [4][6] pour \n et oel
 	{
 		if ((res = ft_reader(fd, map)) == -1)
 		{
-			ft_putendl("error");
+			free(list);
 			return (NULL);
 		}
 		printmap(map, n++);
-		if (!(fill_list(map, list)))
-			return (NULL);
+		begin_list = &list;
+		fill_list(map, begin_list);
 	}
 	printf("size de la list : %zu\n", ft_lstsize(list));
-	printlist(list);
 	printf("FIN du PGR et retour reader : %d\n", res);
 	close(fd);
-	return (0);
+	//free(map);
+	return (list);
 }

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/14 19:40:51 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/15 06:51:22 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ void			ft_init(char map[COL][ROW], t_verif *verif);
 int				next_tetri(int fd, char *buff);
 int				ft_verif(char *c, t_verif *verif);
 int				nb_link(char map[COL][ROW]);
-int				fill_list(char tab[COL][ROW], list first);
+int				fill_list(char tab[COL][ROW], t_list **first);
 void			printlist(list first);
 void			printcoor(t_tetri *tetri);
 void			printmap(char map[COL][ROW], int n);
+void			ft_mapdel(char as[COL][ROW]);
 
 #endif

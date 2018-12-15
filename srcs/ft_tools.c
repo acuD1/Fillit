@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:02:08 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/14 16:35:31 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/15 06:43:05 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,23 @@ void	convert(char map[COL][ROW], char c)
 
 void	printlist(list first)
 {
-	t_list	*link;
+	list		link;
+	t_tetri		*tmp;
+	char		letter;
 
+	if (!first)
+		ft_putstr("error. empty list");
+	tmp = first->content;
+	letter = tmp->letter;
 	link = first;
-	while (link != NULL)
+	
+	while (link)
 	{
-		printf("%d\n", (char)link->content + '0');
+		printf("[%d]->", letter);
 		link = link->next;
 	}
-}
+	
+} 
 
 void	printcoor(t_tetri *tetri)
 {
@@ -112,5 +120,16 @@ void	printmap(char map[COL][ROW], int n)
 	i = 0;
 	printf("MAP %d\n", n);
 	while (i < 4)
-		printf("%s", map[i++]);
+		ft_putstr(map[i++]);
+}
+
+//////////////////////free_ft
+
+void	ft_mapdel(char as[COL][ROW])
+{
+	int i;
+
+	i = 0;
+	while (as[i])
+		free(as[i]);
 }
