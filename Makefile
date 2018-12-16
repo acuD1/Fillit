@@ -61,6 +61,7 @@ SRC += $(S_PATH)reader.c
 SRC += $(S_PATH)tools.c
 SRC += $(S_PATH)tools2.c
 SRC += $(S_PATH)parser.c
+SRC += $(S_PATH)solver.c
 
 # Objects and Headers
 
