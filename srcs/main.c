@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:24:39 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/14 19:23:19 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/16 16:27:05 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int main(int ac, char **av)
+int		main(int ac, char **av)
 {
-	list list;
+	t_list	*list;
 
 	list = NULL;
 	if (ac != 2)
@@ -23,6 +23,7 @@ int main(int ac, char **av)
 		return (0);
 	}
 	list = ft_parser(av[1]);
-	free(list);
+	free_list(&list);
 	return (0);
+	//while (1);
 }

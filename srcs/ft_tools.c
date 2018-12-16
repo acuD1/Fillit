@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tools.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:02:08 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/15 06:43:05 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/16 16:04:43 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,14 @@ void	printlist(list first)
 	tmp = first->content;
 	letter = tmp->letter;
 	link = first;
-	
+
 	while (link)
 	{
 		printf("[%d]->", letter);
 		link = link->next;
 	}
-	
-} 
+
+}
 
 void	printcoor(t_tetri *tetri)
 {
@@ -128,8 +128,29 @@ void	printmap(char map[COL][ROW], int n)
 void	ft_mapdel(char as[COL][ROW])
 {
 	int i;
+	int len;
 
+	len = 0;
+	while (as[len])
+		len++;
 	i = 0;
-	while (as[i])
-		free(as[i]);
+	if (as)
+	{
+		while (as[i])
+			ft_bzero(as[i++], len);
+	}
+	return ;
+}
+
+void	free_list(t_list **list)
+{
+	t_list	*next;
+
+	while (list != NULL && *list != NULL)
+	{
+		next = (*list)->next;
+		free(*list);
+		*list = next;
+	}
+	list = NULL;
 }
