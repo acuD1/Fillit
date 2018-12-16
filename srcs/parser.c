@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:05:26 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/16 16:25:51 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/16 17:18:09 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,8 @@ t_tetri		*fill_coord(char tab[COL][ROW], t_tetri *tetri)
 
 int			fill_list(char map[COL][ROW], t_list **list)
 {
-	t_tetri 		*tetri;
-	int 	n;
+	t_tetri		*tetri;
 
-	n = 0;
 	if (!(tetri = ft_memalloc(sizeof(t_tetri))))
 		return (0);
 	tetri = fill_coord(map, tetri);
@@ -93,8 +91,7 @@ int			fill_list(char map[COL][ROW], t_list **list)
 	return (1);
 }
 
-
-list		ft_parser(char *file)
+t_list		*ft_parser(char *file)
 {
 	char	map[COL][ROW];
 	int		fd;
@@ -104,7 +101,7 @@ list		ft_parser(char *file)
 
 	if (!(fd = (open(file, O_RDONLY))))
 		return (NULL);
-	if(!(list = ft_memalloc(sizeof(t_list))))
+	if (!(list = ft_memalloc(sizeof(t_list))))
 		return (NULL);
 	res = 1;
 	n = 0;
@@ -112,13 +109,12 @@ list		ft_parser(char *file)
 	{
 		if ((res = ft_reader(fd, map)) == -1)
 		{
+			ft_putendl("error");
 			free(list);
 			return (NULL);
 		}
 		printmap(map, n++);
-		if (*map)
-			fill_list(map, &list);
-		ft_bzero(map, 5);
+		fill_list(map, &list);
 	}
 	close(fd);
 	return (list);

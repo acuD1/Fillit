@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 17:32:35 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/14 12:24:29 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/16 17:05:02 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		nb_link(char map[COL][ROW])
 		{
 			if (map[x][y] == '#')
 			{
-				if (map[x + 1][y] == '#' || map[x][y +1] == '#')
+				if (map[x + 1][y] == '#' || map[x][y + 1] == '#')
 					link += 2;
 			}
 			y++;
@@ -64,7 +64,7 @@ int		next_tetri(int fd, char *buff)
 	return (0);
 }
 
-int		ft_reader(int fd, char map[COL][ROW])//map de [4][6] pour \n et oel
+int		ft_reader(int fd, char map[COL][ROW])
 {
 	char	buff[BUFF_LEN];
 	t_verif	verif;
@@ -81,17 +81,14 @@ int		ft_reader(int fd, char map[COL][ROW])//map de [4][6] pour \n et oel
 		while (y < 5)
 		{
 			if (((res = read(fd, buff, 1)) > 0)
-			&& (ft_verif(buff, &verif) == 1))
-					map[x][y] = *buff;
-			y++;
+					&& (ft_verif(buff, &verif) == 1))
+				map[x][y++] = *buff;
 		}
-		map[x][y] = '\0';
-		x++;
+		map[x++][y] = '\0';
 	}
 	res = nb_link(map);
-	if ((verif.hash != 4 || verif.p != 12 || verif.eol != 4) 
-	|| !(res == 6 || res == 8)) 
-			return (-1);
+	if ((verif.hash != 4 || verif.p != 12 || verif.eol != 4)
+			|| !(res == 6 || res == 8))
+		return (-1);
 	return (next_tetri(fd, buff));
 }
-

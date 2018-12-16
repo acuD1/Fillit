@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:24:39 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/16 16:27:05 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/16 17:03:02 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,4 @@ int		main(int ac, char **av)
 	list = ft_parser(av[1]);
 	free_list(&list);
 	return (0);
-	//while (1);
 }

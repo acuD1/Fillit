@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_elem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 15:36:19 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/09 15:37:35 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/16 17:13:04 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list		*ft_create_elem(void *content)
 	if (!(list = (t_list *)malloc(sizeof(t_list))))
 		return (NULL);
 	list->content = content;
-    list->content_size = 0;
+	list->content_size = 0;
 	list->next = NULL;
 	return (list);
 }
