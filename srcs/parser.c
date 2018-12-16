@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:05:26 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/15 06:54:15 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/16 14:43:11 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,14 @@ int			fill_list(char map[COL][ROW], t_list **first)
 {
 	t_tetri 		*tetri;
 
-	if (!(tetri = (t_tetri *)malloc(sizeof(t_tetri))))
-		return (0);		// Ou fonction error
-	tetri = fill_coord(map, tetri);																				//A DELETE
+	if (!(tetri = (t_tetri *)ft_memalloc(sizeof(t_tetri))))
+		return (0);
+	tetri = fill_coord(map, tetri);																			//A DELETE
 	ft_list_push_back(first, tetri);
 	printf("pushback succed\n\n"); //A DELEt
 	return (1);
 }
+
 
 list		ft_parser(char *file)//map de [4][6] pour \n et oel
 {
