@@ -3,14 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 17:08:21 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/16 17:27:14 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/17 22:51:07 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	test(void)
+#include "fillit.h"
+
+int			ft_min_map(t_list **list)
 {
-	return ;
+	int 	nb_lst;
+	int		res;
+	
+	nb_lst = ft_lstsize(*list);
+	if (nb_lst == 1)
+		res = 2;
+	res = ft_sqrt_supp(nb_lst);
+	return (res);
+}
+
+char 		**create_map(int nb)
+{
+	char	**map;
+	int		i;
+	int		j;
+
+	if (!(map[i] = (char **)malloc(sizeof(char) * nb)))
+		return (NULL);
+	i = 0;
+	while (i < nb)
+	{
+		if(!(map[i][j] = (char *)malloc(sizeof(char) * nb)))
+			return (NULL);
+		i++;
+	}
 }

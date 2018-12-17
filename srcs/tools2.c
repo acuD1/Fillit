@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tools2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:49:14 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/16 17:27:23 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/17 22:34:50 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-void	printlist(t_list *first)
-{
-	t_list		*link;
-	t_tetri		*tmp;
-	char		letter;
-
-	if (!first)
-		ft_putstr("error. empty list");
-	tmp = first->content;
-	letter = tmp->letter;
-	link = first;
-	while (link)
-	{
-		printf("[%d]->", letter);
-		link = link->next;
-	}
-}
 
 void	printcoor(t_tetri *tetri)
 {
@@ -56,4 +38,16 @@ void	printmap(char map[COL][ROW], int n)
 	printf("MAP %d\n", n);
 	while (i < 4)
 		ft_putstr(map[i++]);
+}
+
+int		ft_sqrt_supp(int nb)
+{
+	int i;
+
+	i = 0;
+	if (nb <= 0)
+		return (0);
+	while (i * i < nb)
+		i++;
+	return (i);
 }

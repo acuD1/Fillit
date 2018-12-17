@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/16 17:27:11 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/17 22:34:13 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@ int				nb_link(char map[COL][ROW]);
 int				fill_list(char tab[COL][ROW], t_list **first);
 void			free_list(t_list **list);
 
-void			printlist(t_list *first);
+void			printlist(t_list **first);
 void			printcoor(t_tetri *tetri);
 void			printmap(char map[COL][ROW], int n);
+void			ft_letter_assignation(t_list *list);
+void			ft_putletter(t_list *list);
+void			lst_printcoord(t_list **list);
 
 #endif

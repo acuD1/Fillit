@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/28 11:24:39 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/17 21:41:08 by saneveu          ###   ########.fr       */
+/*   Created: 2018/12/17 22:27:42 by saneveu           #+#    #+#             */
+/*   Updated: 2018/12/17 22:32:22 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+int		ft_sqrt(int nb)
 {
-	t_list	*list;
+	int i;
 
-	list = NULL;
-	if (ac != 2)
-	{
-		ft_putendl("usage : ./fillit [source_file]");
+	i = 0;
+	if (nb <= 0)
 		return (0);
+	while (i * i != nb)
+	{
+		if (i * i > nb || i >= 46341)
+			return (0);
+		i++;
 	}
-	list = ft_parser(av[1]);
-	//ft_backtrack(&list);
-	return (0);
+	return (i);
 }

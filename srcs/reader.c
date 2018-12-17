@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 17:32:35 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/16 17:45:06 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/17 18:01:46 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,12 @@ int		ft_reader(int fd, char map[COL][ROW])
 		while (y < 5)
 		{
 			if (((res = read(fd, buff, 1)) > 0)
-					&& (ft_verif(buff, &verif) == 1))
+			&& (ft_verif(buff, &verif) == 1))
+			{
+				if (*buff == '\n' && y == 0)
+					return (-1);
 				map[x][y++] = *buff;
+			}
 		}
 		map[x++][y] = '\0';
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 17:53:59 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/16 17:12:27 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/17 20:48:06 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int				ft_atoi_base(char *str, char *base);
 void			ft_putnbr_base_fd(int nb, char *base, int fd);
 char			*ft_convert_base(char *nbr, char *base_from, char *base_to);
 t_list			*ft_create_elem(void *content);
-void			ft_list_push_back(t_list **begin_list, void *content);
+void			ft_list_push_back(t_list **begin_list, t_list *new);
 int				get_next_line(int const fd, char **line);
 
 #endif

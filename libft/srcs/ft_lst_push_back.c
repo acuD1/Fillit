@@ -3,24 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_push_back.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 15:31:38 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/16 15:57:47 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/17 20:46:39 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_list_push_back(t_list **begin_list, void *content)
+void		ft_list_push_back(t_list **begin_list, t_list *new)
 {
-	if (*begin_list)
+	t_list	*tmp;
+
+	if (!new)
+		return ;
+	tmp = *begin_list;
+	if (tmp)
 	{
-		if (((*begin_list)->next))
-			ft_list_push_back(&((*begin_list)->next), content);
-		else
-			((*begin_list)->next) = ft_create_elem(content);
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
 	}
 	else
-		(*begin_list) = ft_create_elem(content);
+		*begin_list = new;
 }

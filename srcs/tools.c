@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:02:08 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/16 17:27:16 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/17 21:55:39 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_letter(t_list *first)
 	}
 }
 
-void	ft_letter_assignation(t_list *first, t_tetri *tetri)
+void 	ft_letter_assignation(t_list *first)
 {
 	int		cnt;
 	t_list	*tmp;
@@ -63,8 +63,43 @@ void	ft_letter_assignation(t_list *first, t_tetri *tetri)
 	cnt = 0;
 	while (tmp)
 	{
-		tetri->letter = (char)('A' + cnt);
+	 	((t_tetri *)tmp->content)->letter = (char)('A' + cnt);
 		cnt++;
+		tmp = tmp->next;
+	}
+}
+
+void	ft_putletter(t_list *list)
+{
+	t_list	*tmp;
+	t_tetri *tetri;
+	char 	let;
+
+	tmp = list;
+	while (tmp)
+	{
+		tetri = tmp->content;
+		let = tetri->letter;
+		ft_putstr("[");
+		ft_putchar(let);
+		ft_putstr("]->");
+		tmp = tmp->next;
+	}
+	ft_putchar('\n');
+}
+
+void	lst_printcoord(t_list **list)
+{
+	t_list	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = *list;
+	while (tmp)
+	{
+		ft_putchar((char)'A' + i++);
+		ft_putchar('\n');
+		printcoor(((t_tetri *)tmp->content));
 		tmp = tmp->next;
 	}
 }
