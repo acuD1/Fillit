@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 17:08:21 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/17 22:51:07 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/17 22:59:22 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@ char 		**create_map(int nb)
 {
 	char	**map;
 	int		i;
-	int		j;
 
-	if (!(map[i] = (char **)malloc(sizeof(char) * nb)))
+	if (!(map = (char **)malloc(sizeof(char *) * nb)))
 		return (NULL);
 	i = 0;
 	while (i < nb)
 	{
-		if(!(map[i][j] = (char *)malloc(sizeof(char) * nb)))
+		if(!(map[i] = (char *)malloc(sizeof(char) * nb)))
 			return (NULL);
 		i++;
 	}
