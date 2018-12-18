@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:02:08 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/17 21:55:39 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/18 13:50:15 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,36 +69,48 @@ void 	ft_letter_assignation(t_list *first)
 	}
 }
 
+
 void	ft_putletter(t_list *list)
 {
 	t_list	*tmp;
 	t_tetri *tetri;
 	char 	let;
+	int x;
+	int y;
+	int l;
 
+	x = 0;
+	y = 0;
+	let = 'A';
 	tmp = list;
 	while (tmp)
 	{
+		l = 0;
 		tetri = tmp->content;
-		let = tetri->letter;
-		ft_putstr("[");
-		ft_putchar(let);
-		ft_putstr("]->");
+		while (l < 4)
+		{
+			tetri->coor[x][y++] = let;
+			l++;
+		}
 		tmp = tmp->next;
 	}
 	ft_putchar('\n');
 }
 
-void	lst_printcoord(t_list **list)
+void	lst_print(t_list **list)
 {
 	t_list	*tmp;
+	t_tetri *tetriletter;
+	char	let;
 	int		i;
 
 	i = 0;
 	tmp = *list;
 	while (tmp)
 	{
-		ft_putchar((char)'A' + i++);
-		ft_putchar('\n');
+		tetriletter = tmp->content;
+		let = tetriletter->letter;
+		printf("Link |%c|\n", let);
 		printcoor(((t_tetri *)tmp->content));
 		tmp = tmp->next;
 	}

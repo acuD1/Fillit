@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:05:26 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/17 22:18:48 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/18 13:52:58 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int			fill_list(char map[COL][ROW], t_list **list)
 	t_tetri		 *tetri;
 
 	if (!(tetri = (t_tetri *)ft_memalloc(sizeof(t_tetri))))
-		return (0);	
+		return (0);
 	fill_coord(map, tetri);
 	ft_list_push_back(list, ft_lstnew(tetri, sizeof(t_tetri)));
 	free(tetri);
@@ -110,11 +110,11 @@ t_list		*ft_parser(char *file)
 			return (NULL);
 		}
 		fill_list(map, &list);
-		// printmap(map, n++);
+		//printmap(map, n++);
 	}
 	ft_letter_assignation(list);
-	// ft_putletter(list);
-	// lst_printcoord(&list);
+	//ft_putletter(list);
+	lst_print(&list);
 	close(fd);
 	return (list);
 }

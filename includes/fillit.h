@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/17 22:34:13 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/18 13:44:18 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ void			printcoor(t_tetri *tetri);
 void			printmap(char map[COL][ROW], int n);
 void			ft_letter_assignation(t_list *list);
 void			ft_putletter(t_list *list);
-void			lst_printcoord(t_list **list);
+void			lst_print(t_list **list);
+
+int				ft_sqrt_supp(int nb);
+void			ft_backtrack(t_list **list);
 
 #endif
