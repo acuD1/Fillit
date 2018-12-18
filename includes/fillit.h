@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/17 22:34:13 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/18 16:37:40 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ void			printcoor(t_tetri *tetri);
 void			printmap(char map[COL][ROW], int n);
 void			ft_letter_assignation(t_list *list);
 void			ft_putletter(t_list *list);
-void			lst_printcoord(t_list **list);
+void			lst_print(t_list **list);
+
+int				ft_min_map(t_list **list);
+char			**create_map(int nb);
+int				ft_sqrt_supp(int nb);
+void			b_point(char **map, int size);
 
 #endif

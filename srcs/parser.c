@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:05:26 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/17 22:18:48 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/18 16:37:46 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,11 +110,10 @@ t_list		*ft_parser(char *file)
 			return (NULL);
 		}
 		fill_list(map, &list);
-		// printmap(map, n++);
 	}
 	ft_letter_assignation(list);
-	// ft_putletter(list);
-	// lst_printcoord(&list);
+	ft_putletter(list);
+	lst_print(&list);
 	close(fd);
 	return (list);
 }

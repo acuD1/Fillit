@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 17:08:21 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/17 22:59:22 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/18 16:41:11 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,36 @@ char 		**create_map(int nb)
 	i = 0;
 	while (i < nb)
 	{
-		if(!(map[i] = (char *)malloc(sizeof(char) * nb)))
+		if(!(map[i] = (char *)malloc(sizeof(char) * nb + 1)))
 			return (NULL);
 		i++;
 	}
+	b_point(map, nb);
+	return (map);
 }
+/*
+void		solver(t_list **list)
+{
+	// -if safe
+	// -place tetri
+	// -else
+	// -back nex step (use ft_strdel)
+	// -if (map < need_len)
+	//	-add 1 * 1 to map
+
+}
+
+int			safe(t_list **list, char **map)
+{
+	t_list 	*head;
+	t_tetri *tetri;
+	int		posx;
+	int		posy;
+	int		x;
+	int		y;
+
+	while(map[posx][posy] != '.' || map[posx][posy] != '\0')
+		(map[posx][posy] == '\0' ? (posy = 0 && posx++) : posy++);
+	
+}
+*/

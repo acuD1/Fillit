@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:02:08 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/17 21:55:39 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/18 16:37:30 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,20 @@ void	ft_putletter(t_list *list)
 	ft_putchar('\n');
 }
 
-void	lst_printcoord(t_list **list)
+void	lst_print(t_list **list)
 {
 	t_list	*tmp;
+	t_tetri *tetriletter;
+	char	let;
 	int		i;
 
 	i = 0;
 	tmp = *list;
 	while (tmp)
 	{
-		ft_putchar((char)'A' + i++);
-		ft_putchar('\n');
+		tetriletter = tmp->content;
+		let = tetriletter->letter;
+		printf("Link |%c|\n", let);
 		printcoor(((t_tetri *)tmp->content));
 		tmp = tmp->next;
 	}
