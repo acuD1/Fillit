@@ -6,13 +6,13 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:24:39 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/18 16:42:06 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/18 17:00:05 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		main(int ac, char **av)
+/*int		main(int ac, char **av)
 {
 	t_list	*list;
 
@@ -23,18 +23,23 @@ int		main(int ac, char **av)
 		return (0);
 	}
 	list = ft_parser(av[1]);
-	//ft_backtrack(&list);
+	//ft_backtrack(&list)
 	return (0);
-}
+}*/
 
-/*
-int		main(void)
+int		main(int ac, char **av)
 {
 	char **map;
 	int		j = -1;
-
-	map = create_map(19);
-	while (++j < 19)
+	t_list *list;
+	int i;
+ 	
+	(void)ac;
+	list = NULL;
+	list = ft_parser(av[1]);
+	i = ft_min_map(&list);
+	map = create_map(i);
+	while (++j < i)
 		ft_putendl(map[j]);
 	return (0);
-}*/
+}

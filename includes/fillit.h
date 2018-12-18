@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/18 16:37:40 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/18 18:47:18 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_tetri
 {
 	char		coor[4][2];
 	char		letter;
+	int			placed;
 }				t_tetri;
 
 t_list			*ft_parser(char *file);
