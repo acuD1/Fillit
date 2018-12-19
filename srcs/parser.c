@@ -6,11 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:05:26 by saneveu           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/12/18 13:52:58 by arsciand         ###   ########.fr       */
-=======
-/*   Updated: 2018/12/18 16:37:46 by saneveu          ###   ########.fr       */
->>>>>>> sam
+/*   Updated: 2018/12/19 12:11:48 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,16 +110,9 @@ t_list		*ft_parser(char *file)
 			return (NULL);
 		}
 		fill_list(map, &list);
-<<<<<<< HEAD
-		//printmap(map, n++);
 	}
 	ft_letter_assignation(list);
-	//ft_putletter(list);
-=======
-	}
-	ft_letter_assignation(list);
-	ft_putletter(list);
->>>>>>> sam
+//	ft_putletter(list);
 	lst_print(&list);
 	close(fd);
 	return (list);

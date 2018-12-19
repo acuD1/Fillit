@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:49:14 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/18 03:00:21 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/19 12:35:23 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,13 @@ void	b_point(char **map, int size)
 		map[i][j] = '\0';
 		i++;
 	}
+}
+
+void	ft_display(char **map, int i)
+{
+	int	j;
+
+	j = -1;
+	while (++j < i)
+		ft_putendl(map[j]);
 }

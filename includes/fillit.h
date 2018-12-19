@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/19 11:54:00 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/19 12:35:35 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ int				ft_min_map(t_list **list);
 char			**create_map(int nb);
 int				ft_sqrt_supp(int nb);
 void			b_point(char **map, int size);
+void			solver(t_list **list);
+void			ft_display(char **map, int i);
 
 #endif
