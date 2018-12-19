@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 17:08:21 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/19 15:52:55 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/19 15:56:34 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ int 	fill_map(char **map, t_tetri *tetri, int i, int pos)
 	{
 		if (ft_check_si_tout_vas_bien(map, tetri, pos, i))
 			ft_place_la_piece(map, tetri, pos, i);
+		else
+			ft_unplace_la_piece(map, tetri, pos, i);
 		pos++;
 	}
 	return (0);
