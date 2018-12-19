@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:05:26 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/19 12:11:48 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/19 20:46:06 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,19 @@ void		fix_neg(t_tetri *tetri)
 void		absolut_coord(t_tetri *tetri)
 {
 	int		a;
-	int		b;
 
-	a = 0;
-	b = 0;
-	while (tetri->coor[a][b] != 0)
+	while (tetri->coor[0][0] != 0)
+	{
+		a = 0;
 		while (a < 4)
-			tetri->coor[a++][b] -= 1;
-	a = 0;
-	while (tetri->coor[a][b + 1] != 0)
+			tetri->coor[a++][0] -= 1;
+	}
+	while (tetri->coor[0][1] != 0)
+	{
+		a = 0;
 		while (a < 4)
-			tetri->coor[a++][b + 1] -= 1;
+			tetri->coor[a++][1] -= 1;
+	}
 	fix_neg(tetri);
 }
 

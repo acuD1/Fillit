@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 17:32:35 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/17 18:01:46 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/19 21:03:14 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int		nb_link(char map[COL][ROW])
 		{
 			if (map[x][y] == '#')
 			{
-				if (map[x + 1][y] == '#' || map[x][y + 1] == '#')
+				if (map[x + 1][y] == '#')
+					link += 2;
+				if (map[x][y + 1] == '#')
 					link += 2;
 			}
 			y++;
@@ -87,6 +89,8 @@ int		ft_reader(int fd, char map[COL][ROW])
 					return (-1);
 				map[x][y++] = *buff;
 			}
+			else
+				return (-1);
 		}
 		map[x++][y] = '\0';
 	}

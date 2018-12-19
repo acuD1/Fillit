@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:02:08 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/19 12:10:24 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/19 19:20:02 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,13 @@ void	lst_print(t_list **list)
 		printcoor(((t_tetri *)tmp->content));
 		tmp = tmp->next;
 	}
+}
+
+void	ft_free_map(char **map)
+{
+	int i;
+
+	i = 0;
+	while(map[i++])
+		free(map[i]);
 }
