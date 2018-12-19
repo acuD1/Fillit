@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:49:14 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/17 22:34:50 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/18 03:00:21 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,23 @@ int		ft_sqrt_supp(int nb)
 	i = 0;
 	if (nb <= 0)
 		return (0);
-	while (i * i < nb)
+	while(i * i < nb)
 		i++;
 	return (i);
+}
+
+void	b_point(char **map, int size)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while(i < size)
+	{
+		j = 0;
+		while(j < size)
+			map[i][j++] = '.';
+		map[i][j] = '\0';
+		i++;
+	}
 }

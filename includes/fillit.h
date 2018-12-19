@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/18 13:44:18 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/19 11:54:00 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_tetri
 {
 	char		coor[4][2];
 	char		letter;
+	int			placed;
 }				t_tetri;
 
 t_list			*ft_parser(char *file);
@@ -48,7 +49,9 @@ void			ft_letter_assignation(t_list *list);
 void			ft_putletter(t_list *list);
 void			lst_print(t_list **list);
 
+int				ft_min_map(t_list **list);
+char			**create_map(int nb);
 int				ft_sqrt_supp(int nb);
-void			ft_backtrack(t_list **list);
+void			b_point(char **map, int size);
 
 #endif
