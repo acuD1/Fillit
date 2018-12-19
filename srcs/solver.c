@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 17:08:21 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/19 15:56:34 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/19 17:51:05 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int ft_check_si_tout_vas_bien(char **map,t_tetri *tetri, int pos, int i)
 	row = 0;
 	row = pos / 4;
 	col = pos % 4;
-	if (pos%i > i || pos%i < 0 || pos/i > i || pos/i < 0 || map[pos/i][pos%i] != '.')
+	if (pos%i + tetri->coor[0][1] > i || pos%i + tetri->coor[0][1] < 0 || pos/i + tetri->coor[0][0] > i || pos/i + tetri->coor[0][0] < 0 || map[pos/i + tetri->coor[0][0]][pos%i + tetri->coor[0][1]] != '.')
 		return (0);
 	else if (pos%i  + tetri->coor[1][1] > i || pos%i  + tetri->coor[1][1] < 0 || pos/i + tetri->coor[1][0] > i || pos/i + tetri->coor[1][0] < 0 || map[pos/i + tetri->coor[1][0]][pos%i  + tetri->coor[1][1]] != '.')
 		return (0);
@@ -105,7 +105,7 @@ void ft_unplace_la_piece(char **map, t_tetri *tetri, int pos, int map_size)
 	row = 0;
 	row = pos / map_size;
 	col = pos % map_size;
-	map[row][col] = '.';
+	map[row + tetri->coor[0][0]][col + tetri->coor[0][1]] = '.';
 	map[row + tetri->coor[1][0]][col + tetri->coor[1][1]] = '.';
 	map[row + tetri->coor[2][0]][col + tetri->coor[2][1]] = '.';
 	map[row + tetri->coor[3][0]][col + tetri->coor[3][1]] = '.';
@@ -120,22 +120,28 @@ void ft_place_la_piece(char **map, t_tetri *tetri, int pos, int map_size)
 	row = 0;
 	row = pos / map_size;
 	col = pos % map_size;
-	map[row][col] = tetri->letter;
+	map[row + tetri->coor[0][0]][col + tetri->coor[0][1]] = tetri->letter;
 	map[row + tetri->coor[1][0]][col + tetri->coor[1][1]] = tetri->letter;
 	map[row + tetri->coor[2][0]][col + tetri->coor[2][1]] = tetri->letter;
 	map[row + tetri->coor[3][0]][col + tetri->coor[3][1]] = tetri->letter;
 }
 
-int 	fill_map(char **map, t_tetri *tetri, int i, int pos)
+int 	fill_map(char **map, t_list *list, int pos, int i)
 {
-	if (tetri->letter == 'C')
+	if (list== NULL)
 		return (1);
-	if (pos < i * i)
+	while (pos < i * i)
 	{
-		if (ft_check_si_tout_vas_bien(map, tetri, pos, i))
-			ft_place_la_piece(map, tetri, pos, i);
-		else
-			ft_unplace_la_piece(map, tetri, pos, i);
+		if (ft_check_si_tout_vas_bien(map, ((t_tetri *)list->content), pos, i))
+		{
+			ft_place_la_piece(map, ((t_tetri *)list->content), pos, i);
+			printf("Letter %c\n", ((t_tetri *)list->content)->letter);
+			ft_display(map, i);
+			if (fill_map(map, list->next, 0, i))
+				return(1);
+			else
+				ft_unplace_la_piece(map, ((t_tetri *)list->content), pos, i);
+		}
 		pos++;
 	}
 	return (0);
@@ -145,19 +151,18 @@ void		solver(t_list **list)
 {
 	int		i;
 	char	**map;
-	t_list	*link;
-	t_tetri	*tetri;
 
-	link = *list;
-	tetri = (link)->content;
 	i = ft_min_map(list);
 	map = create_map(i);
-	fill_map(map, tetri, i, 0);
-	// {
-	// 	free(map);
-	// 	i++;
-	// 	map = create_map(i);
-	// }
+	while (fill_map(map, *list, 0, i) == 0)
+	{
+		ft_display(map, i);
+		while (map)
+			free(*map++);
+		i++;
+		map = create_map(i);
+		printf("NEW MAP ?\n");
+	}
 	printf("Final map\n");
-	ft_display(map, i);
+	//ft_display(map, i);
 }
