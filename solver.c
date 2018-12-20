@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 17:08:21 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/20 19:05:18 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/20 22:46:11 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,39 +87,22 @@ int			ft_fill_map(char **map, t_list *list, int i)
 	return (0);
 }
 
-void	free_map2(char ***map)
-{
-	int		i;
-
-	i = -1;
-	if (map != NULL && *map != NULL)
-	{
-		while ((*map)[++i] != NULL)
-		{
-			free((*map)[i]);
-			(*map)[i] = NULL;
-		}
-		free(*map);
-		*map = NULL;
-	}
-}
-
-void		ft_solver(t_list **list)
+char		**ft_solver(t_list **list)
 {
 	int		i;
 	char	**map;
 
 	i = ft_min_map(list);
+	map = NULL;
 	if ((map = ft_create_map(i)) == NULL)
-		return ;
+		return NULL;
 	while ((ft_fill_map(map, *list, i)) == 0)
 	{
 		i++;
 		free(map);
-		if ((map = ft_create_map(i)) == NULL)
-			return ;
+		if(!(map = ft_create_map(i)))
+			return NULL;
 	}
-	while (*map)
-		ft_putendl(*map++);
-	free_map2(&map);
+	ft_free_list(*list);
+	return (map);
 }

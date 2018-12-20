@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/20 17:19:56 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/20 22:28:57 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # define COL 4
 # define ROW 6
 # define BUFF_LEN 1
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
 
 typedef struct	s_verif
 {
@@ -32,7 +35,7 @@ typedef struct	s_tetri
 
 void			ft_init(char map[COL][ROW], t_verif *verif);
 t_list			*ft_parser(char *file);
-void			ft_solver(t_list **list);
+char			**ft_solver(t_list **list);
 void			ft_display_final_map(char **final_map);
 int				ft_sqrt_supp(int nb);
 void			ft_b_point(char **map, int size);
@@ -41,5 +44,6 @@ void			ft_free_list(t_list *list);
 void			ft_letter_assignation(t_list *list);
 int				ft_min_map(t_list **list);
 char			**ft_create_map(int nb);
+void			free_map2(char ***map);
 
 #endif

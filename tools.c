@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:02:08 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/20 18:58:17 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/20 23:04:15 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	**ft_create_map(int nb)
 	char	**map;
 	int		i;
 
-	if (!(map = (char **)malloc(sizeof(char *) * nb + 1)))
+	if (!(map = (char **)malloc(sizeof(char *) * nb)))
 		return (NULL);
 	i = 0;
 	while (i < nb)
@@ -96,6 +96,7 @@ char	**ft_create_map(int nb)
 			free_map(&map);
 			return (NULL);
 		}
+		map[i][0] = '\0';
 		i++;
 	}
 	ft_b_point(map, nb);
