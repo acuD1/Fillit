@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 02:04:27 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/20 02:30:40 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/20 04:27:10 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	lst_print(t_list **list)
 		tmp = tmp->next;
 	}
 }
+
 void	ft_display(char **map, int i)
 {
 	int	j;

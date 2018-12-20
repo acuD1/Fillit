@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 17:08:21 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/20 04:16:21 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/20 04:29:09 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ int			ft_check_si_tout_vas_bien(char **map, t_tetri *tetri, int pos, int i)
 	
 	row = pos / i;
 	col = pos % i;
-	if (col + tetri->coor[0][1] > i || col + tetri->coor[0][1] < 0 || row + tetri->coor[0][0] > i 
+	if (col + tetri->coor[0][1] >= i || col + tetri->coor[0][1] < 0 || row + tetri->coor[0][0] >= i 
 	|| row + tetri->coor[0][0] < 0 || map[row + tetri->coor[0][0]][col + tetri->coor[0][1]] != '.')
 		return (0);
-	else if (col + tetri->coor[1][1] > i || col + tetri->coor[1][1] < 0 || row + tetri->coor[1][0] > i 
+	else if (col + tetri->coor[1][1] >= i || col + tetri->coor[1][1] < 0 || row + tetri->coor[1][0] >= i 
 	|| row + tetri->coor[1][0] < 0 || map[row + tetri->coor[1][0]][col + tetri->coor[1][1]] != '.')
 		return (0);
-	else if (col + tetri->coor[2][1] > i || col + tetri->coor[2][1] < 0 || row + tetri->coor[2][0] > i 
+	else if (col + tetri->coor[2][1] >= i || col + tetri->coor[2][1] < 0 || row + tetri->coor[2][0] >= i 
 	|| row + tetri->coor[2][0] < 0 || map[row + tetri->coor[2][0]][col + tetri->coor[2][1]] != '.')
 		return (0);
-	else if (col + tetri->coor[3][1] > i || col + tetri->coor[3][1] < 0 || row + tetri->coor[3][0] > i 
+	else if (col + tetri->coor[3][1] >= i || col + tetri->coor[3][1] < 0 || row + tetri->coor[3][0] >= i 
 	|| row + tetri->coor[3][0] < 0 || map[row + tetri->coor[3][0]][col + tetri->coor[3][1]] != '.')
 		return (0);
 	return (1);
@@ -77,8 +77,6 @@ int			fill_map(char **map, t_list *list, int i)
 		if (ft_check_si_tout_vas_bien(map, ((t_tetri *)list->content), pos, i))
 		{
 			ft_place_la_piece(map, ((t_tetri *)list->content), pos, i);
-			ft_display(map, i);
-			ft_putchar('\n');
 			if (fill_map(map, list->next, i))
 				return(1);
 			else
