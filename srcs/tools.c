@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:02:08 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/19 19:20:02 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/20 03:17:36 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,6 @@ void	free_list(t_list **list)
 	list = NULL;
 }
 
-void	ft_letter(t_list *first)
-{
-	t_list		*list;
-	t_tetri		*tetri;
-	char		c;
-
-	c = 'A';
-	list = first;
-	while (list)
-	{
-		tetri = list->content;
-		tetri->letter = c;
-		c += 1;
-		list = list->next;
-	}
-}
-
 void 	ft_letter_assignation(t_list *first)
 {
 	int		cnt;
@@ -69,58 +52,32 @@ void 	ft_letter_assignation(t_list *first)
 	}
 }
 
-
-void	ft_putletter(t_list *list)
+int			ft_min_map(t_list **list)
 {
-	t_list	*tmp;
-	t_tetri *tetri;
-	char 	let;
-	int x;
-	int y;
-	int l;
+	int 	nb_lst;
+	int		res;
 
-	x = 0;
-	y = 0;
-	let = 'A';
-	tmp = list;
-	while (tmp)
-	{
-		l = 0;
-		tetri = tmp->content;
-		while (l < 4)
-		{
-			tetri->coor[x][y++] = let;
-			l++;
-		}
-		tmp = tmp->next;
-	}
-	ft_putchar('\n');
+	nb_lst = ft_lstsize(*list);
+	if (nb_lst == 1)
+		res = 2;
+	res = ft_sqrt_supp(nb_lst * 4);
+	return (res);
 }
 
-void	lst_print(t_list **list)
+char 		**create_map(int nb)
 {
-	t_list	*tmp;
-	t_tetri *tetriletter;
-	char	let;
+	char	**map;
 	int		i;
 
+	if (!(map = (char **)malloc(sizeof(char *) * nb + 1)))
+		return (NULL);
 	i = 0;
-	tmp = *list;
-	while (tmp)
+	while (i < nb)
 	{
-		tetriletter = tmp->content;
-		let = tetriletter->letter;
-		printf("Link |%c|\n", let);
-		printcoor(((t_tetri *)tmp->content));
-		tmp = tmp->next;
+		if(!(map[i] = (char *)malloc(sizeof(char) * nb + 1)))
+			return (NULL);
+		i++;
 	}
-}
-
-void	ft_free_map(char **map)
-{
-	int i;
-
-	i = 0;
-	while(map[i++])
-		free(map[i]);
+	b_point(map, nb);
+	return (map);
 }

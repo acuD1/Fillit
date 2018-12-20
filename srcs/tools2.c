@@ -3,42 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tools2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:49:14 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/19 12:35:23 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/20 02:50:23 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-void	printcoor(t_tetri *tetri)
-{
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	while (i < 4)
-	{
-		printf("#|%d|", i);
-		printf("y = %d ", tetri->coor[i][j]);
-		printf("x = %d ", tetri->coor[i][j + 1]);
-		printf("\n");
-		i++;
-	}
-	printf("-----------------\n");
-}
-
-void	printmap(char map[COL][ROW], int n)
-{
-	int i;
-
-	i = 0;
-	printf("MAP %d\n", n);
-	while (i < 4)
-		ft_putstr(map[i++]);
-}
 
 int		ft_sqrt_supp(int nb)
 {
@@ -66,13 +38,11 @@ void	b_point(char **map, int size)
 		map[i][j] = '\0';
 		i++;
 	}
+	map[i] = NULL;
 }
 
-void	ft_display(char **map, int i)
+void	ft_display_final_map(char **final_map)
 {
-	int	j;
-
-	j = -1;
-	while (++j < i)
-		ft_putendl(map[j]);
-}
+	while(*final_map)
+		ft_putendl(*final_map++);
+}	

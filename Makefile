@@ -62,6 +62,7 @@ SRC += $(S_PATH)tools.c
 SRC += $(S_PATH)tools2.c
 SRC += $(S_PATH)parser.c
 SRC += $(S_PATH)solver.c
+SRC += $(S_PATH)ft_display.c
 
 # Objects and Headers
 

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:05:26 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/19 20:46:06 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/20 02:53:46 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,27 +95,22 @@ t_list		*ft_parser(char *file)
 	char	map[COL][ROW];
 	int		fd;
 	int		res;
-	int		n;
 	t_list	*list;
 
 	if (!(fd = (open(file, O_RDONLY))))
 		return (NULL);
 	list = NULL;
 	res = 1;
-	n = 0;
 	while (res == 1)
 	{
 		if ((res = ft_reader(fd, map)) == -1)
 		{
-			ft_putendl("error");
 			free_list(&list);
 			return (NULL);
 		}
 		fill_list(map, &list);
 	}
 	ft_letter_assignation(list);
-//	ft_putletter(list);
-	lst_print(&list);
 	close(fd);
 	return (list);
 }
