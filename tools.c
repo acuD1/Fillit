@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:02:08 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/20 17:20:20 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/20 18:58:17 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,23 @@ int		ft_min_map(t_list **list)
 	return (res);
 }
 
+void	free_map(char ***map)
+{
+	int		i;
+
+	i = -1;
+	if (map != NULL && *map != NULL)
+	{
+		while ((*map)[++i] != NULL)
+		{
+			free((*map)[i]);
+			(*map)[i] = NULL;
+		}
+		free(*map);
+		*map = NULL;
+	}
+}
+
 char	**ft_create_map(int nb)
 {
 	char	**map;
@@ -75,9 +92,13 @@ char	**ft_create_map(int nb)
 	while (i < nb)
 	{
 		if (!(map[i] = (char *)malloc(sizeof(char) * nb + 1)))
+		{
+			free_map(&map);
 			return (NULL);
+		}
 		i++;
 	}
 	ft_b_point(map, nb);
 	return (map);
 }
+

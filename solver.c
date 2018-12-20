@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 17:08:21 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/20 17:19:49 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/20 19:05:18 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,23 @@ int			ft_fill_map(char **map, t_list *list, int i)
 	return (0);
 }
 
+void	free_map2(char ***map)
+{
+	int		i;
+
+	i = -1;
+	if (map != NULL && *map != NULL)
+	{
+		while ((*map)[++i] != NULL)
+		{
+			free((*map)[i]);
+			(*map)[i] = NULL;
+		}
+		free(*map);
+		*map = NULL;
+	}
+}
+
 void		ft_solver(t_list **list)
 {
 	int		i;
@@ -104,4 +121,5 @@ void		ft_solver(t_list **list)
 	}
 	while (*map)
 		ft_putendl(*map++);
+	free_map2(&map);
 }
