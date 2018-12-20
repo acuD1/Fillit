@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:02:08 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/20 16:57:49 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/20 17:20:20 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,39 +64,20 @@ int		ft_min_map(t_list **list)
 	return (res);
 }
 
-char	*ft_strsetnew(char c, int size)
+char	**ft_create_map(int nb)
 {
-	char	*str;
+	char	**map;
 	int		i;
 
-	str = (char*)malloc((size + 1) * sizeof(char));
-	if (!str)
+	if (!(map = (char **)malloc(sizeof(char *) * nb + 1)))
 		return (NULL);
 	i = 0;
-	while (size--)
+	while (i < nb)
 	{
-		str[i] = c;
+		if (!(map[i] = (char *)malloc(sizeof(char) * nb + 1)))
+			return (NULL);
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
-}
-
-char	**ft_create_map(int bsq)
-{
-	char	**map_y;
-	char	*map_x;
-	int		i;
-
-	map_y = (char**)malloc((bsq + 1) * sizeof(char*));
-	if (!map_y)
-		return (NULL);
-	i = bsq;
-	map_y[i] = NULL;
-	while (--i >= 0)
-	{
-		map_x = ft_strsetnew('.', bsq);
-		map_y[i] = map_x;
-	}
-	return (map_y);
+	ft_b_point(map, nb);
+	return (map);
 }

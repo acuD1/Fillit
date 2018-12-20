@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/20 17:02:42 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/20 17:19:56 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,3 @@ int				ft_min_map(t_list **list);
 char			**ft_create_map(int nb);
 
 #endif
-

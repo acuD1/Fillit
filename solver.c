@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 17:08:21 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/20 17:03:18 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/20 17:19:49 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,5 @@ void		ft_solver(t_list **list)
 			return ;
 	}
 	while (*map)
-			ft_putendl(*map++);
+		ft_putendl(*map++);
 }
-
