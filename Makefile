@@ -47,10 +47,10 @@ LNAME = libft.a
 
 # Dir/Files Path
 
-S_PATH = ./srcs/
-H_PATH = ./includes/
+S_PATH = ./
+H_PATH = ./
 B_PATH = ./build/
-O_PATH = ./build/objs/
+O_PATH = ./
 L_PATH = ./libft/
 
 
@@ -62,11 +62,10 @@ SRC += $(S_PATH)tools.c
 SRC += $(S_PATH)tools2.c
 SRC += $(S_PATH)parser.c
 SRC += $(S_PATH)solver.c
-SRC += $(S_PATH)ft_display.c
 
 # Objects and Headers
 
-OBJ = $(patsubst $(S_PATH)%.c, $(O_PATH)%.o, $(SRC))
+OBJ = $(patsubst %.c, %.o, $(SRC))
 HDR = $(H_PATH)$(HNAME)
 LIB = $(L_PATH)$(LNAME)
 
@@ -109,9 +108,9 @@ make:
 	$(MSG)
 	@$(MAKE) --no-print-directory all
 
-all: libm $(BUILD) $(NAME)
+all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): libm $(OBJ)
 	@$(ECHO) $(GCFIL) $(NAME)
 	@$(CMPLO) $(NAME) $(O_PATH)*.o $(LIB)
 	@$(ECHO) $(GCSUC)
@@ -134,27 +133,30 @@ norme:
 	@$(NORME) $(SRC) $(H_PATH)$(HNAME)
 	@$(ECHO) $(NORMD)
 
-clean:
+clean: libco
 	@$(CLRUN)
 	@$(RM_RF) $(OBJ)
 	@$(ECHO) $(RMSHW) $(O_PATH)*.o
 	@$(ECHO) $(CLSUC)
 
-fclean:
+fclean: libc
 	@$(FCRUN)
 	@$(RM_RF) $(OBJ)
-	@$(ECHO) $(RMSHW) $(O_PATH)*.o
+#	@$(ECHO) $(RMSHW) $(O_PATH)*.o
 	@$(ECHO) $(RMSHW) *.o
-	@$(RM_RF) $(O_PATH)
-	@$(ECHO) $(RMSHW) $(O_PATH)
-	@$(RM_RF) $(B_PATH)
-	@$(ECHO) $(RMSHW) $(B_PATH)
+#	@$(RM_RF) $(O_PATH)
+#	@$(ECHO) $(RMSHW) $(O_PATH)
+#	@$(RM_RF) $(B_PATH)
+#	@$(ECHO) $(RMSHW) $(B_PATH)
 	@$(RM_RF) $(NAME)
 	@$(ECHO) $(RMSHW) $(NAME)
 	@$(ECHO) $(FCSUC)
 
 libm:
 	@make -C $(L_PATH)
+
+libco:
+	@make clean -C $(L_PATH)
 
 libc:
 	@make fclean -C $(L_PATH)
