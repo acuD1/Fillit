@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:24:39 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/20 22:40:23 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/23 07:55:36 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ int		main(int ac, char **av)
 	}
 	if (!(list = ft_parser(av[1])))
 	{
+		ft_free_list(list);
 		ft_putendl("error");
 		return (0);
 	}
 	if (!(map = ft_solver(&list)))
 	{
+		ft_free_map(map);
 		ft_putendl("error");
 		return (0);
 	}

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:02:08 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/20 23:04:15 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/23 07:56:49 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,12 @@ void	ft_init(char map[COL][ROW], t_verif *verif)
 void	ft_free_list(t_list *list)
 {
 	t_list	*next;
+	t_tetri *tetri;
 
 	while (list != NULL)
 	{
+		tetri = list->content;
+		free(tetri);
 		next = list;
 		list = list->next;
 		free(next);
@@ -64,23 +67,6 @@ int		ft_min_map(t_list **list)
 	return (res);
 }
 
-void	free_map(char ***map)
-{
-	int		i;
-
-	i = -1;
-	if (map != NULL && *map != NULL)
-	{
-		while ((*map)[++i] != NULL)
-		{
-			free((*map)[i]);
-			(*map)[i] = NULL;
-		}
-		free(*map);
-		*map = NULL;
-	}
-}
-
 char	**ft_create_map(int nb)
 {
 	char	**map;
@@ -93,7 +79,7 @@ char	**ft_create_map(int nb)
 	{
 		if (!(map[i] = (char *)malloc(sizeof(char) * nb + 1)))
 		{
-			free_map(&map);
+			ft_free_map(map);
 			return (NULL);
 		}
 		map[i][0] = '\0';

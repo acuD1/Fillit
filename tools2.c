@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:49:14 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/20 22:34:51 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/23 07:57:13 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,22 @@ void	ft_display_final_map(char **final_map)
 	i = 0;
 	while (final_map[i])
 		ft_putendl(final_map[i++]);
-	free_map2(&final_map);
+	ft_free_map(final_map);
 }
 
-void	free_map2(char ***map)
+void	ft_free_map(char **map)
 {
 	int		i;
 
 	i = -1;
 	if (map != NULL && *map != NULL)
 	{
-		while ((*map)[++i] != NULL)
+		while (map[++i] != NULL)
 		{
-			free((*map)[i]);
-			(*map)[i] = NULL;
+			free(map[i]);
+			map[i] = NULL;
 		}
-		free(*map);
-		*map = NULL;
+		free(map);
+		map = NULL;
 	}
 }

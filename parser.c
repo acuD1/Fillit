@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:05:26 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/20 22:21:28 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/23 07:54:19 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,9 @@ t_list		*ft_parser(char *file)
 	while (res == 1)
 	{
 		if ((res = ft_reader(fd, map, &verif)) == -1)
-		{
-			ft_free_list(list);
 			return (NULL);
-		}
-		ft_fill_list(map, &list);
+		if(!(ft_fill_list(map, &list)))
+			return (NULL);
 		ft_bzero(map, sizeof(map));
 	}
 	ft_letter_assignation(list);

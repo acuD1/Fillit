@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/20 22:28:57 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/23 07:55:14 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ void			ft_free_list(t_list *list);
 void			ft_letter_assignation(t_list *list);
 int				ft_min_map(t_list **list);
 char			**ft_create_map(int nb);
-void			free_map2(char ***map);
+void			ft_free_map(char **map);
 
 #endif

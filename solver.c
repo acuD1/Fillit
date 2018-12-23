@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 17:08:21 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/20 22:46:11 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/23 07:59:39 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char		**ft_solver(t_list **list)
 	while ((ft_fill_map(map, *list, i)) == 0)
 	{
 		i++;
-		free(map);
+		ft_free_map(map);
 		if(!(map = ft_create_map(i)))
 			return NULL;
 	}
