@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:49:14 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/23 07:57:13 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/25 03:36:08 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	ft_display_final_map(char **final_map)
 	i = 0;
 	while (final_map[i])
 		ft_putendl(final_map[i++]);
-	ft_free_map(final_map);
 }
 
 void	ft_free_map(char **map)

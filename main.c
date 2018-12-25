@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:24:39 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/23 07:55:36 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/25 03:38:09 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ int		main(int ac, char **av)
 		return (0);
 	}
 	else
+	{
 		ft_display_final_map(map);
+		ft_free_map(map);
+	}
 	return (0);
 }

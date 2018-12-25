@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 02:02:08 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/23 07:56:49 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/25 03:33:56 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	**ft_create_map(int nb)
 	char	**map;
 	int		i;
 
-	if (!(map = (char **)malloc(sizeof(char *) * nb)))
+	if (!(map = (char **)malloc(sizeof(char *) * nb + 1)))
 		return (NULL);
 	i = 0;
 	while (i < nb)
