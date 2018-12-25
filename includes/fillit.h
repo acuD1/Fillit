@@ -6,13 +6,13 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/25 14:38:33 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/25 15:04:06 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
-# include "./libft/libft.h"
+# include "../libft/includes/libft.h"
 # define COL 4
 # define ROW 6
 # define BUFF_LEN 1

@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_lstpushback.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arsciand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 12:58:04 by arsciand          #+#    #+#             */
-/*   Updated: 2018/11/20 16:00:32 by arsciand         ###   ########.fr       */
+/*   Created: 2018/12/25 14:58:06 by arsciand          #+#    #+#             */
+/*   Updated: 2018/12/25 14:58:30 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_putchar(char c)
+void		ft_lstpushback(t_list **begin_list, t_list *new)
 {
-	write(1, &c, 1);
+	t_list	*tmp;
+
+	if (!new)
+		return ;
+	tmp = *begin_list;
+	if (tmp)
+	{
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
+	else
+		*begin_list = new;
 }

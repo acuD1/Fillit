@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:24:39 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/25 14:55:09 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/25 15:06:37 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int		main(int ac, char **av)
 	t_list	*list;
 	char	**map;
 
+	map = NULL;
 	if (ac != 2)
 	{
 		ft_putendl("usage : ./fillit [source_file]");

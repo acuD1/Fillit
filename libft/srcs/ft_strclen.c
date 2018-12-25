@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstpushback.c                                   :+:      :+:    :+:   */
+/*   ft_strclen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/20 17:03:40 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/20 17:04:13 by arsciand         ###   ########.fr       */
+/*   Created: 2018/11/23 17:44:07 by arsciand          #+#    #+#             */
+/*   Updated: 2018/11/23 18:30:54 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_lstpushback(t_list **begin_list, t_list *new)
+size_t	ft_strclen(char const *s, int c)
 {
-	t_list	*tmp;
+	size_t	len;
 
-	if (!new)
-		return ;
-	tmp = *begin_list;
-	if (tmp)
-	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
-	else
-		*begin_list = new;
+	len = 0;
+	while (s[len] != c && s[len])
+		len++;
+	return (len);
 }
