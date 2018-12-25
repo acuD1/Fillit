@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:21:43 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/25 13:47:41 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/25 14:38:33 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,5 @@ void			ft_letter_assignation(t_list *list);
 int				ft_min_map(t_list **list);
 char			**ft_create_map(int nb);
 void			ft_free_map(char **map);
-int				ft_check_max_tetri(char *file);
 
 #endif
