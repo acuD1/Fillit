@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:24:39 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/25 03:38:09 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/25 14:27:09 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int		main(int ac, char **av)
 {
 	t_list	*list;
 	char	**map;
 
-	list = NULL;
 	if (ac != 2)
 	{
 		ft_putendl("usage : ./fillit [source_file]");
@@ -26,7 +26,6 @@ int		main(int ac, char **av)
 	}
 	if (!(list = ft_parser(av[1])))
 	{
-		ft_free_list(list);
 		ft_putendl("error");
 		return (0);
 	}

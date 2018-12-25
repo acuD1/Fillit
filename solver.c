@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 17:08:21 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/23 07:59:39 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/25 14:24:09 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,21 @@ char		**ft_solver(t_list **list)
 	int		i;
 	char	**map;
 
+	if (ft_lstlen(*list) > 26)
+	{
+		ft_free_list(*list);
+		return (NULL);
+	}
 	i = ft_min_map(list);
 	map = NULL;
 	if ((map = ft_create_map(i)) == NULL)
-		return NULL;
+		return (NULL);
 	while ((ft_fill_map(map, *list, i)) == 0)
 	{
 		i++;
 		ft_free_map(map);
-		if(!(map = ft_create_map(i)))
-			return NULL;
+		if (!(map = ft_create_map(i)))
+			return (NULL);
 	}
 	ft_free_list(*list);
 	return (map);
