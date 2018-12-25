@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:49:14 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/25 14:17:30 by arsciand         ###   ########.fr       */
+/*   Updated: 2018/12/25 15:47:38 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,13 @@ void	ft_b_point(char **map, int size)
 		map[i][j] = '\0';
 		i++;
 	}
+	map[i] = NULL;
 }
 
 void	ft_display_final_map(char **final_map)
 {
-	int i;
-
-	i = 0;
-	while (final_map[i])
-		ft_putendl(final_map[i++]);
+	while (*final_map)
+		ft_putendl(*final_map++);
 }
 
 void	ft_free_map(char **map)
