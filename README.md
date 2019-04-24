@@ -57,7 +57,7 @@ Input map ->
 ```
 
 Output ->
-```
+```C
 ./fillit map
 ABBBB.
 ACCCEE

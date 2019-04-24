@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 17:08:21 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/25 14:24:09 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/24 11:44:15 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void		ft_unplace_tetri(char **map, t_tetri *t, int pos, int map_size)
 	int x;
 	int y;
 
-	x = 0;
-	y = 0;
 	y = pos / map_size;
 	x = pos % map_size;
 	map[y + t->c[0][0]][x + t->c[0][1]] = '.';

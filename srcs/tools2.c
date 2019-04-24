@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:49:14 by arsciand          #+#    #+#             */
-/*   Updated: 2018/12/25 15:49:39 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/24 11:44:46 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,5 @@ void	ft_free_map(char **map)
 			map[i] = NULL;
 		}
 		free(map);
-		map = NULL;
 	}
 }
